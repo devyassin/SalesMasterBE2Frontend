@@ -1,3 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tapestry&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: #beb4b4;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  width: 0rem;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: #beb4b4;
+}
+
+.little-scrollbar::-webkit-scrollbar {
+  width: 2px;
+}
+
+.little-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: #beb4b4;
+}
+
+.little-scrollbar-global::-webkit-scrollbar {
+  width: 4px;
+}
+
+.little-scrollbar-global::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: #beb4b4;
+}
+
+.input-form {
+  border-radius: 20px;
+  background: #0e0c0c;
+  box-shadow: 0px 4px 28px -10px rgba(252, 247, 247, 0.25);
+}
+
+.copyright {
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.03rem;
+}
+
+.card-welcome {
+  border-radius: 1.25rem;
+  border: 2px solid #fff;
+  background: #222;
+  box-shadow: 0px 2px 41px -7px rgba(251, 251, 251, 0.25);
+}
+
+.title-welcome {
+  color: #fff;
+  text-align: center;
+  font-family: Mirza;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.title-card {
+  color: #fff;
+  /* font-family: Tajawal; */
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.card-selected-border {
+  border: 2px solid #a3de83;
+}
+
+.card-noselected-border {
+  border: 2px solid #222;
+}
+
+.label {
+  color: #fff;
+  font-family: Mirza;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.circle-image {
+    border-radius: 50px;
+    background: #0e0c0c;
+    box-shadow: 0px 4px 28px -10px rgba(252, 247, 247, 0.25);
+  }
+  
+  /* Global styles */
+  
+  .flex-wrapper-col {
+    @apply flex min-h-[100vh]  flex-col justify-between px-6 pt-6;
+  }
+  
+  /*MobileShowBtn */
+  #first,
+  #second,
+  #third {
+    width: 40px;
+    height: 3px;
+  }
+  
+  .input-creategig {
+    border-radius: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: #161622;
+  }
+  
+  .sticky-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%; /* Adjust the height as needed */
+  }
