@@ -1,7 +1,7 @@
 import Input from "./components/form/Input";
 import InputPassword from "./components/form/InputPassword";
-import { Login } from "./pages";
-import SignUp from "./pages/SignUp";
+import { Clients, Dashborad, Feed, Login, ProtectedRoute } from "./pages";
+import SignUp from "./pages/PublicRoutes/SignUp";
 import "./styles/globals.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -17,8 +17,20 @@ function App() {
       /> */}
       <BrowserRouter>
         <Routes>
-          <Route index path="/s'authentifier"  element={<Login />} />
-          <Route path="/s’inscrire" element={<SignUp />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Feed />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Dashborad />} />
+            <Route path="dashboard" element={<Dashborad />} />
+            <Route path="clients" element={<Clients />} />
+          </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </>

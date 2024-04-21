@@ -1,11 +1,11 @@
-import { clientLogo } from "../assets";
-import Input from "../components/form/Input";
-import InputPassword from "../components/form/InputPassword";
-import InputSelectUserType from "../components/form/InputSelectUserType ";
-import AskedSignIn from "../components/ui/AskedSignIn ";
-import Copyright from "../components/ui/Copyright ";
-import HeaderLogo from "../components/ui/HeaderLogo";
-import FirstBtn from "../components/ui/button/FirstBtn";
+import { clientLogo } from "../../assets";
+import Input from "../../components/form/Input";
+import InputPassword from "../../components/form/InputPassword";
+import InputSelectUserType from "../../components/form/InputSelectUserType ";
+import AskedSignIn from "../../components/ui/AskedSignIn ";
+import Copyright from "../../components/ui/Copyright ";
+import HeaderLogo from "../../components/ui/HeaderLogo";
+import FirstBtn from "../../components/ui/button/FirstBtn";
 
 const SignUp = () => {
   return (
@@ -52,7 +52,7 @@ const SignUp = () => {
           <InputSelectUserType />
 
           <FirstBtn customClasses="mt-8 py-2" text={"S’inscrire"} />
-          <AskedSignIn />
+          <AskedSignIn type="signup" text="Se connecter" />
         </form>
       </div>
 

@@ -2,7 +2,24 @@ import hiddenEye from "./hiddenEye.png";
 import showenEye from "./showenEye.png";
 import clientLogo from "./clientLogo.svg";
 import logo from "./logo.png";
-import background from "./background.jpg";
+import background from "./background.svg";
+import DashboardIcon from "./DashboardIcon.svg";
+import ClientIcon from "./ClientIcon.svg";
+import VenteIcon from "./VenteIcon.svg";
+import InventaireIcon from "./InventaireIcon.svg";
+import FactureIcon from "./FactureIcon.svg";
+import LogoutIcon from "./LogoutIcon.svg";
 
-
-export { hiddenEye, showenEye, clientLogo,logo,background };
+export {
+  hiddenEye,
+  showenEye,
+  clientLogo,
+  logo,
+  background,
+  DashboardIcon,
+  ClientIcon,
+  VenteIcon,
+  InventaireIcon,
+  FactureIcon,
+  LogoutIcon,
+};
