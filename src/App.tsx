@@ -1,6 +1,15 @@
 import Input from "./components/form/Input";
 import InputPassword from "./components/form/InputPassword";
-import { Clients, Dashborad, Feed, Login, ProtectedRoute } from "./pages";
+import {
+  Clients,
+  Dashborad,
+  Facturation,
+  Feed,
+  Inventaire,
+  Login,
+  ProtectedRoute,
+  Ventes,
+} from "./pages";
 import SignUp from "./pages/PublicRoutes/SignUp";
 import "./styles/globals.css";
 
@@ -28,6 +37,9 @@ function App() {
             <Route index element={<Dashborad />} />
             <Route path="dashboard" element={<Dashborad />} />
             <Route path="clients" element={<Clients />} />
+            <Route path="ventes" element={<Ventes />} />
+            <Route path="inventaire" element={<Inventaire />} />
+            <Route path="facturation" element={<Facturation />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />

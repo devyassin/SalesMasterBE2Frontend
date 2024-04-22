@@ -25,7 +25,7 @@ export const categories = [
   },
   {
     name: "Inventaire",
-    path: "/Inventaire",
+    path: "/inventaire",
     icon: InventaireIcon,
   },
   {

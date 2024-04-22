@@ -9,6 +9,8 @@ import VenteIcon from "./VenteIcon.svg";
 import InventaireIcon from "./InventaireIcon.svg";
 import FactureIcon from "./FactureIcon.svg";
 import LogoutIcon from "./LogoutIcon.svg";
+import SalesMasterIcon1 from "./SalesMasterIcon1.svg";
+import SalesMasterIcon2 from "./SalesMasterIcon2.svg";
 
 export {
   hiddenEye,
@@ -22,4 +24,6 @@ export {
   InventaireIcon,
   FactureIcon,
   LogoutIcon,
+  SalesMasterIcon1,
+  SalesMasterIcon2,
 };

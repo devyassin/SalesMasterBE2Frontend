@@ -3,5 +3,17 @@ import ProtectedRoute from "./ProtectedRoute";
 import Feed from "./Dashboard/Feed";
 import Clients from "./Dashboard/Clients";
 import Dashborad from "./Dashboard/Dashborad ";
+import Ventes from "./Dashboard/Ventes";
+import Inventaire from "./Dashboard/Inventaire";
+import Facturation from "./Dashboard/Facturation";
 
-export { Login, ProtectedRoute, Feed, Clients, Dashborad };
+export {
+  Login,
+  ProtectedRoute,
+  Feed,
+  Clients,
+  Dashborad,
+  Ventes,
+  Inventaire,
+  Facturation,
+};
