@@ -1,4 +1,4 @@
-import { LogoutIcon } from "../../assets";
+import { LogoutIcon } from "../../../assets";
 
 const LogoutBtn = () => {
   return (

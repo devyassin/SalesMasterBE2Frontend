@@ -1,5 +1,10 @@
 const Dashborad = () => {
-  return <div className="text-5xl">Dashborad </div>;
+  return (
+    <div className="">
+      Dashborad
+      
+    </div>
+  );
 };
 
 export default Dashborad;

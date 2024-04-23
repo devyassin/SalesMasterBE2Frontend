@@ -1,8 +1,8 @@
 import { SalesMasterIcon1, SalesMasterIcon2 } from "../../assets";
 import { categories } from "../../constants/sideBar";
 import { useLocation } from "react-router";
-import SideBarBtn from "../btn/SideBarBtn";
-import LogoutBtn from "../btn/LogoutBtn";
+import SideBarBtn from "../ui/button/SideBarBtn";
+import LogoutBtn from "../ui/button/LogoutBtn";
 
 const SideNavBar = () => {
   const location = useLocation();
