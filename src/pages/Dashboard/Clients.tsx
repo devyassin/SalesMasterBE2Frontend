@@ -1,6 +1,8 @@
 import Header from "../../components/header/Header";
 import { ClientsHeaderIcon } from "../../assets";
 import TableFunctions from "../../components/table/TableFunctions";
+import Table from "../../components/table/Table";
+import Pagination from "../../components/table/Pagination";
 
 const Clients = () => {
   return (
@@ -12,6 +14,8 @@ const Clients = () => {
         number={25}
       />
       <TableFunctions />
+      <Table />
+      <Pagination />
     </div>
   );
 };
