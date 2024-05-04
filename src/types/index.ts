@@ -1,6 +1,6 @@
 export interface Client {
   nom: string;
-  address: string;
+  adresse: string;
   email: string;
-  phone: string;
+  telephone: string;
 }

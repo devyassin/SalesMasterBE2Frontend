@@ -1,7 +1,17 @@
 import { AddButton } from "../../../assets";
-const AddButtonSection = () => {
+import { useDispatch } from "react-redux";
+import { showoverlay } from "../../../store/ModalSlice";
+type Props = {
+  onShowFormModal: () => void;
+};
+const AddButtonSection = ({ onShowFormModal }: Props) => {
+  const dispatch = useDispatch<any>();
   return (
     <img
+      onClick={() => {
+        dispatch(showoverlay());
+        onShowFormModal();
+      }}
       src={AddButton}
       alt="add btn"
       className="cursor-pointer hover:opacity-80 duration-300"

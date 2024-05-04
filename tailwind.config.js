@@ -35,6 +35,7 @@ export default {
       "shadow-green": "#9B9B1F",
       "light-blue": "#41C9E2",
       "dark-blue": "#008DDA",
+      "soft-read": "#F02E5E",
       white: "#fff",
       golden: "rgba(254, 197, 118, 0.54)",
       bluen: "rgba(199, 216, 235, 0.40)",

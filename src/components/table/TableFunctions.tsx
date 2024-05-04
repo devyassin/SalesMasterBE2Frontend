@@ -2,8 +2,14 @@ import { TfiImport, TfiExport, TfiFilter } from "react-icons/tfi";
 import AddButtonSection from "../ui/button/AddButtonSection";
 import StyleOne from "../ui/iconStyles/StyleOne";
 import SearchBar from "./SearchBar";
+import { CSVLink } from "react-csv";
 
-const TableFunctions = () => {
+type Props = {
+  csvData: Object[];
+  filename: string;
+  onShowFormModal: () => void;
+};
+const TableFunctions = ({ csvData, filename, onShowFormModal }: Props) => {
   return (
     <div className="flex justify-between items-center mt-10 space-x-24 mr-10">
       <SearchBar name="search client" placeholder="Enter le nom du client" />
@@ -15,11 +21,13 @@ const TableFunctions = () => {
           <StyleOne>
             <TfiImport size={25} />
           </StyleOne>
-          <StyleOne>
-            <TfiExport size={25} />
-          </StyleOne>
+          <CSVLink data={csvData ? csvData : ""} filename={filename}>
+            <StyleOne>
+              <TfiExport size={25} />
+            </StyleOne>
+          </CSVLink>
         </div>
-        <AddButtonSection />
+        <AddButtonSection onShowFormModal={onShowFormModal} />
       </div>
     </div>
   );

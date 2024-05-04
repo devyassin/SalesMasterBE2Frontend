@@ -1,4 +1,9 @@
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+import {
+  PayloadAction,
+  createAsyncThunk,
+  createSlice,
+  current,
+} from "@reduxjs/toolkit";
 
 import { StateManagementHelper } from "../helpers/StateManagementHelper ";
 import axios, { AxiosResponse } from "axios";
@@ -15,7 +20,15 @@ const instance = axios.create({
 
 export const getAllClients = createAsyncThunk(
   "clients/all",
-  async ({ size, page }: { size?: number; page?: number }) => {
+  async ({
+    size,
+    page,
+    name,
+  }: {
+    size?: number;
+    page?: number;
+    name: string;
+  }) => {
     try {
       let url = "/clients";
       const queryParams = [];
@@ -26,6 +39,10 @@ export const getAllClients = createAsyncThunk(
 
       if (page !== undefined) {
         queryParams.push(`page=${page}`);
+      }
+
+      if (name !== undefined) {
+        queryParams.push(`name=${name}`);
       }
 
       if (queryParams.length > 0) {
@@ -40,21 +57,43 @@ export const getAllClients = createAsyncThunk(
   }
 );
 
+export const addClient = apiService.add();
 const initialState: any = {
   data: {
     size: 0,
     clients: [],
     page: 0,
   },
-
+  name: "",
+  client: {
+    nom: "",
+    email: "",
+    adresse: "",
+    telephone: "",
+  },
   statusGetAllClients: "",
+  statusAddClient: "",
   errorGetAllClients: "",
+  errorAddClient: "",
 };
 
 const clientSlice = createSlice({
   name: "clients",
   initialState,
   reducers: {
+    handleGigForm: (
+      state: any,
+      { payload }: PayloadAction<{ name: any; value: any }>
+    ) => {
+      const { name, value } = payload;
+      state.client[name] = value;
+    },
+    clearClient: (state) => {
+      state.client = initialState.client;
+    },
+    clearStatusClient: (state) => {
+      state.statusAddClient = "";
+    },
     NextPage: (state) => {
       state.data.page += 1;
     },
@@ -63,6 +102,9 @@ const clientSlice = createSlice({
     },
     GoToPage: (state, { payload }) => {
       state.data.page = payload.page;
+    },
+    SearchClientByName: (state, { payload }) => {
+      state.name = payload.name;
     },
   },
   extraReducers: (builder) => {
@@ -77,9 +119,27 @@ const clientSlice = createSlice({
       .addCase(getAllClients.rejected, (state, { payload }: any) => {
         state.statusGetAllClients = "failed";
         state.errorGetAllClients = payload.response.data.message;
+      })
+      .addCase(addClient.pending, (state) => {
+        state.statusAddClient = "loading";
+      })
+      .addCase(addClient.fulfilled, (state: any, { payload }) => {
+        state.statusAddClient = "succeeded";
+      })
+      .addCase(addClient.rejected, (state, { payload }: any) => {
+        state.statusAddClient = "failed";
+        state.errorAddClient = payload.response.data.message;
       });
   },
 });
 
-export const { NextPage, PreviousPage, GoToPage } = clientSlice.actions;
+export const {
+  NextPage,
+  PreviousPage,
+  GoToPage,
+  handleGigForm,
+  clearClient,
+  clearStatusClient,
+  SearchClientByName,
+} = clientSlice.actions;
 export default clientSlice.reducer;

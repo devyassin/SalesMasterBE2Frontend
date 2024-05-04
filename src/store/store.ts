@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import ClientSlice from "./ClientSlice";
+import ModalSlice from "./ModalSlice";
 
 const store = configureStore({
   reducer: {
     clients: ClientSlice,
+    modals: ModalSlice,
   },
 });
 
