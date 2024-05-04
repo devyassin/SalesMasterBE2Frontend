@@ -5,7 +5,11 @@ import Table from "../../components/table/Table";
 import Pagination from "../../components/table/Pagination";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getAllClients } from "../../store/ClientSlice";
+import {
+  SearchClientByName,
+  getAllClients,
+  removeClient,
+} from "../../store/ClientSlice";
 import { useAppSelector } from "../../store/store";
 import { tableClientFields } from "../../constants/TableConstants";
 import { NextPage, PreviousPage } from "../../store/ClientSlice";
@@ -18,9 +22,7 @@ const Clients = () => {
   const { page, totalPages, totalElementsInTable } = useAppSelector(
     (state) => state.clients.data
   );
-  const name = useAppSelector(
-    (state) => state.clients.name
-  );
+  const name = useAppSelector((state) => state.clients.name);
   const statusGetAllClients = useAppSelector(
     (state) => state.clients.statusGetAllClients
   );
@@ -29,8 +31,7 @@ const Clients = () => {
   );
   useEffect(() => {
     dispatch(getAllClients({ size: 10, page: page, name: name }));
-  }, [page,name]);
-
+  }, [page, name]);
 
   return (
     <div className="flex flex-col ">
@@ -41,7 +42,12 @@ const Clients = () => {
         number={totalElementsInTable}
       />
       <TableFunctions
+        nameSearchBar="search client"
+        placeholder="Enter le nom du client"
         onShowFormModal={() => dispatch(showClientFormModal())}
+        onSearch={(value: string) =>
+          dispatch(SearchClientByName({ name: value }))
+        }
         csvData={clients}
         filename="clients"
       />
@@ -50,6 +56,7 @@ const Clients = () => {
         data={clients}
         statusGetAllData={statusGetAllClients}
         feilds={tableClientFields}
+        onDelete={(id: string) => dispatch(removeClient(id))}
       />
       <Pagination
         page={page}

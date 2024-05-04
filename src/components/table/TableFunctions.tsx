@@ -8,11 +8,25 @@ type Props = {
   csvData: Object[];
   filename: string;
   onShowFormModal: () => void;
+  onSearch: (value: string) => void;
+  nameSearchBar: string;
+  placeholder: string;
 };
-const TableFunctions = ({ csvData, filename, onShowFormModal }: Props) => {
+const TableFunctions = ({
+  csvData,
+  filename,
+  onShowFormModal,
+  onSearch,
+  nameSearchBar,
+  placeholder,
+}: Props) => {
   return (
     <div className="flex justify-between items-center mt-10 space-x-24 mr-10">
-      <SearchBar name="search client" placeholder="Enter le nom du client" />
+      <SearchBar
+        onSearch={onSearch}
+        name={nameSearchBar}
+        placeholder={placeholder}
+      />
       <div className="flex space-x-8 pr-10 items-center">
         <div className="flex  space-x-6">
           <StyleOne>

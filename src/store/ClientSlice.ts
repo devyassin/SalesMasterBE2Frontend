@@ -58,6 +58,8 @@ export const getAllClients = createAsyncThunk(
 );
 
 export const addClient = apiService.add();
+export const removeClient = apiService.delete();
+
 const initialState: any = {
   data: {
     size: 0,
@@ -73,8 +75,10 @@ const initialState: any = {
   },
   statusGetAllClients: "",
   statusAddClient: "",
+  statusRemoveClient: "",
   errorGetAllClients: "",
   errorAddClient: "",
+  errorRemoveClient: "",
 };
 
 const clientSlice = createSlice({
@@ -129,6 +133,21 @@ const clientSlice = createSlice({
       .addCase(addClient.rejected, (state, { payload }: any) => {
         state.statusAddClient = "failed";
         state.errorAddClient = payload.response.data.message;
+      })
+      .addCase(removeClient.pending, (state) => {
+        state.statusRemoveClient = "loading";
+      })
+      .addCase(removeClient.fulfilled, (state: any, { payload }) => {
+        state.statusRemoveClient = "succeeded";
+        const id = payload.clientId;
+        state.data.content = state.data.content.filter((client: any) => {
+          return client.clientId !== id;
+        });
+        state.data.totalElementsInTable -= 1;
+      })
+      .addCase(removeClient.rejected, (state, { payload }: any) => {
+        state.statusRemoveClient = "failed";
+        state.errorRemoveClient = payload.response.data.message;
       });
   },
 });

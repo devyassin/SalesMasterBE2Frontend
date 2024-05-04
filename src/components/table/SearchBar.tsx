@@ -1,14 +1,12 @@
-import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../store/store";
-import { SearchClientByName } from "../../store/ClientSlice";
+
 import { ChangeEvent } from "react";
 
 type Props = {
   name: string;
   placeholder: string;
+  onSearch: (value: string) => void;
 };
-const SearchBar = ({ name, placeholder }: Props) => {
-  const dispatch = useDispatch<any>();
+const SearchBar = ({ name, placeholder, onSearch }: Props) => {
 
   const handleChange = (
     event: ChangeEvent<
@@ -16,7 +14,7 @@ const SearchBar = ({ name, placeholder }: Props) => {
     >
   ) => {
     let value = event.target.value;
-    dispatch(SearchClientByName({ name: value }));
+    onSearch(value);
   };
   return (
     <div
