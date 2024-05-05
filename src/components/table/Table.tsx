@@ -5,9 +5,16 @@ type Props = {
   statusGetAllData: string;
   feilds: string[];
   onDelete: (id: string) => void;
+  onShowFormUpdate: (id: string) => void;
 };
 
-const Table = ({ data, statusGetAllData, feilds, onDelete }: Props) => {
+const Table = ({
+  data,
+  statusGetAllData,
+  feilds,
+  onDelete,
+  onShowFormUpdate,
+}: Props) => {
   return (
     <div className="relative  mt-14 overflow-x-auto h-[50vh]  scrollbar-hide   shadow-md sm:rounded-lg  ">
       <table className="w-full text-sm text-left rtl:text-right text-[#a0aec0]">
@@ -16,8 +23,15 @@ const Table = ({ data, statusGetAllData, feilds, onDelete }: Props) => {
           {statusGetAllData === "succeeded" ? (
             data.map((objData: Object, i: number) => {
               const stringObjData: string[] = Object.values(objData);
-        
-              return <Row onDelete={onDelete} key={i} cells={stringObjData} />;
+
+              return (
+                <Row
+                  onShowFormUpdate={onShowFormUpdate}
+                  onDelete={onDelete}
+                  key={i}
+                  cells={stringObjData}
+                />
+              );
             })
           ) : (
             // i will do skeleton animations later

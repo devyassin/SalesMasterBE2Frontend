@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   overlayVisibility: false,
   clientFormModalVisibility: false,
+  formType: "add",
 };
 
 const modalSlice = createSlice({
@@ -14,8 +15,12 @@ const modalSlice = createSlice({
     showClientFormModal: (state) => {
       state.clientFormModalVisibility = !state.clientFormModalVisibility;
     },
+    SetFormType: (state, { payload }) => {
+      state.formType = payload.formType;
+    },
   },
 });
 
-export const { showoverlay, showClientFormModal } = modalSlice.actions;
+export const { showoverlay, showClientFormModal, SetFormType } =
+  modalSlice.actions;
 export default modalSlice.reducer;

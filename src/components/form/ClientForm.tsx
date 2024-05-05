@@ -2,16 +2,22 @@ import { ChangeEvent } from "react";
 import GreenBtn from "../ui/button/GreenBtn";
 import FormModal from "./Modal";
 import { useDispatch } from "react-redux";
-import { handleGigForm } from "../../store/ClientSlice";
+import { handleGigForm, updateOneClient } from "../../store/ClientSlice";
 import useAddNewClient from "../../hooks/useAddNewClient";
 import { useAppSelector } from "../../store/store";
 import { Client } from "../../types";
+import useUpdateOneClient from "../../hooks/useUpdateOneClient";
 
 const ClientForm = () => {
   const dispatch = useDispatch<any>();
 
-  const { addNewClient } = useAddNewClient();
   const client: Client = useAppSelector((state) => state.clients.client);
+  const formType = useAppSelector((state) => state.modals.formType);
+
+  const { addNewClient } = useAddNewClient();
+
+  const { updateClient } = useUpdateOneClient();
+
   const handleChange = (
     event: ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -23,9 +29,11 @@ const ClientForm = () => {
 
   const inputStyle = `px-6 py-4 w-full outline-none input-creategig`;
   return (
-    <FormModal formHeader="Ajouer Client">
+    <FormModal
+      formHeader={`${formType === "add" ? "Ajouer Client" : "Modifier Client"}`}
+    >
       <form
-        onSubmit={addNewClient}
+        onSubmit={formType === "add" ? addNewClient : updateClient}
         className="flex flex-col space-y-6 pt-4 tracking-wider font-tajwal"
       >
         <div className={`flex items-center w-full space-x-14 `}>
@@ -65,7 +73,10 @@ const ClientForm = () => {
           />
         </div>
         <div className="pt-4">
-          <GreenBtn text="Ajouter" customClasses="py-2 px-8" />
+          <GreenBtn
+            text={`${formType === "add" ? "Ajouter" : "Modifer"}`}
+            customClasses="py-2 px-8"
+          />
         </div>
       </form>
     </FormModal>

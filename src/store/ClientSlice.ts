@@ -59,6 +59,8 @@ export const getAllClients = createAsyncThunk(
 
 export const addClient = apiService.add();
 export const removeClient = apiService.delete();
+export const getOneClient = apiService.getOne();
+export const updateOneClient = apiService.update();
 
 const initialState: any = {
   data: {
@@ -66,6 +68,7 @@ const initialState: any = {
     clients: [],
     page: 0,
   },
+
   name: "",
   client: {
     nom: "",
@@ -76,9 +79,13 @@ const initialState: any = {
   statusGetAllClients: "",
   statusAddClient: "",
   statusRemoveClient: "",
+  statusGetOneClient: "",
+  statusUpdateOneClient: "",
   errorGetAllClients: "",
   errorAddClient: "",
   errorRemoveClient: "",
+  errorGetOneClient: "",
+  errorUpdateOneClient: "",
 };
 
 const clientSlice = createSlice({
@@ -97,6 +104,7 @@ const clientSlice = createSlice({
     },
     clearStatusClient: (state) => {
       state.statusAddClient = "";
+      state.statusUpdateOneClient = "";
     },
     NextPage: (state) => {
       state.data.page += 1;
@@ -127,7 +135,7 @@ const clientSlice = createSlice({
       .addCase(addClient.pending, (state) => {
         state.statusAddClient = "loading";
       })
-      .addCase(addClient.fulfilled, (state: any, { payload }) => {
+      .addCase(addClient.fulfilled, (state: any) => {
         state.statusAddClient = "succeeded";
       })
       .addCase(addClient.rejected, (state, { payload }: any) => {
@@ -148,6 +156,32 @@ const clientSlice = createSlice({
       .addCase(removeClient.rejected, (state, { payload }: any) => {
         state.statusRemoveClient = "failed";
         state.errorRemoveClient = payload.response.data.message;
+      })
+      .addCase(getOneClient.pending, (state) => {
+        state.statusGetOneClient = "loading";
+      })
+      .addCase(getOneClient.fulfilled, (state: any, { payload }) => {
+        state.statusGetOneClient = "succeeded";
+        state.client = payload;
+      })
+      .addCase(getOneClient.rejected, (state, { payload }: any) => {
+        state.statusGetOneClient = "failed";
+        state.errorGetOneClient = payload.response.data.message;
+      })
+      .addCase(updateOneClient.pending, (state) => {
+        state.statusUpdateOneClient = "loading";
+      })
+      .addCase(updateOneClient.fulfilled, (state: any, { payload }) => {
+        state.statusUpdateOneClient = "succeeded";
+        const index = state.data.content.findIndex(
+          (client: any) => client.clientId === state.client.clientId
+        );
+        state.data.content[index] = state.client;
+        state.client = payload;
+      })
+      .addCase(updateOneClient.rejected, (state, { payload }: any) => {
+        state.statusUpdateOneClient = "failed";
+        state.errorUpdateOneClient = payload.response.data.message;
       });
   },
 });

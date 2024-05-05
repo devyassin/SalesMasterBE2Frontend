@@ -7,13 +7,19 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
   SearchClientByName,
+  clearClient,
   getAllClients,
+  getOneClient,
   removeClient,
 } from "../../store/ClientSlice";
 import { useAppSelector } from "../../store/store";
 import { tableClientFields } from "../../constants/TableConstants";
 import { NextPage, PreviousPage } from "../../store/ClientSlice";
-import { showClientFormModal } from "../../store/ModalSlice";
+import {
+  SetFormType,
+  showClientFormModal,
+  showoverlay,
+} from "../../store/ModalSlice";
 import ClientForm from "../../components/form/ClientForm";
 
 const Clients = () => {
@@ -44,7 +50,11 @@ const Clients = () => {
       <TableFunctions
         nameSearchBar="search client"
         placeholder="Enter le nom du client"
-        onShowFormModal={() => dispatch(showClientFormModal())}
+        onShowFormModal={() => {
+          dispatch(showClientFormModal());
+          dispatch(SetFormType({ formType: "add" }));
+          dispatch(clearClient());
+        }}
         onSearch={(value: string) =>
           dispatch(SearchClientByName({ name: value }))
         }
@@ -57,6 +67,12 @@ const Clients = () => {
         statusGetAllData={statusGetAllClients}
         feilds={tableClientFields}
         onDelete={(id: string) => dispatch(removeClient(id))}
+        onShowFormUpdate={(id: string) => {
+          dispatch(getOneClient(id));
+          dispatch(showClientFormModal());
+          dispatch(showoverlay());
+          dispatch(SetFormType({ formType: "update" }));
+        }}
       />
       <Pagination
         page={page}

@@ -11,3 +11,6 @@
 
 ## Login Page
 ![Login Page](<src/interfaces/Login Page.png>)
+
+## Client Page
+![Client Page](<src/interfaces/Client Page.png>)
