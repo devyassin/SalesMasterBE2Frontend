@@ -4,3 +4,11 @@ export interface Client {
   email: string;
   telephone: string;
 }
+
+export interface Produit {
+  nom: string;
+  description: string;
+  prix: number;
+  quantiteEnStock: number;
+  image:string;
+}

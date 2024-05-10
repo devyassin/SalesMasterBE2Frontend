@@ -36,7 +36,8 @@ const Clients = () => {
     (state) => state.modals.clientFormModalVisibility
   );
   useEffect(() => {
-    dispatch(getAllClients({ size: 10, page: page, name: name }));
+    let size = 10;
+    dispatch(getAllClients([size, page, name]));
   }, [page, name]);
 
   return (

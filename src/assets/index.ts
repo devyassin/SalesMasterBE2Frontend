@@ -12,7 +12,9 @@ import LogoutIcon from "./LogoutIcon.svg";
 import SalesMasterIcon1 from "./SalesMasterIcon1.svg";
 import SalesMasterIcon2 from "./SalesMasterIcon2.svg";
 import ClientsHeaderIcon from "./Clients.svg";
+import InventaireHeaderIcon from "./inventaireHeaderIcon.svg";
 import AddButton from "./AddButton.svg";
+import productimg from "./productimg.jpg";
 
 export {
   hiddenEye,
@@ -30,4 +32,6 @@ export {
   SalesMasterIcon2,
   ClientsHeaderIcon,
   AddButton,
+  InventaireHeaderIcon,
+  productimg,
 };

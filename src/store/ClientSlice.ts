@@ -1,62 +1,10 @@
-import {
-  PayloadAction,
-  createAsyncThunk,
-  createSlice,
-  current,
-} from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { StateManagementHelper } from "../helpers/StateManagementHelper ";
-import axios, { AxiosResponse } from "axios";
-import { API_URL } from "../constants/endpoints";
 
 const apiService = new StateManagementHelper("clients");
-const baseURL = `${API_URL}`;
-const instance = axios.create({
-  baseURL,
-  headers: {
-    "content-type": "application/json",
-  },
-});
 
-export const getAllClients = createAsyncThunk(
-  "clients/all",
-  async ({
-    size,
-    page,
-    name,
-  }: {
-    size?: number;
-    page?: number;
-    name: string;
-  }) => {
-    try {
-      let url = "/clients";
-      const queryParams = [];
-
-      if (size !== undefined) {
-        queryParams.push(`size=${size}`);
-      }
-
-      if (page !== undefined) {
-        queryParams.push(`page=${page}`);
-      }
-
-      if (name !== undefined) {
-        queryParams.push(`name=${name}`);
-      }
-
-      if (queryParams.length > 0) {
-        url += "?" + queryParams.join("&");
-      }
-
-      const response = await instance.get(url);
-      return response.data;
-    } catch (error: any) {
-      return Promise.reject(new Error(error.message));
-    }
-  }
-);
-
+export const getAllClients = apiService.getAll(true);
 export const addClient = apiService.add();
 export const removeClient = apiService.delete();
 export const getOneClient = apiService.getOne();

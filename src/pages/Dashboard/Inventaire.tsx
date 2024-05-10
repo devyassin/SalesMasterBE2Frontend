@@ -1,6 +1,69 @@
+import { useDispatch } from "react-redux";
+import { InventaireHeaderIcon } from "../../assets";
+import Header from "../../components/header/Header";
+import { useAppSelector } from "../../store/store";
+import { useEffect } from "react";
+import {
+  NextPage,
+  PreviousPage,
+  SearchProductByName,
+  clearProduit,
+  getAllProducts,
+} from "../../store/ProductSlice";
+import Pagination from "../../components/table/Pagination";
+import TableFunctions from "../../components/table/TableFunctions";
+import ProductCards from "../../components/inventaire/ProductCards";
 
 const Inventaire = () => {
-  return <div className="text-5xl">Inventaire</div>;
+  const dispatch = useDispatch<any>();
+  const produits: any = useAppSelector((state) => state.produits.data.content);
+  const { page, totalPages, totalElementsInTable } = useAppSelector(
+    (state) => state.produits.data
+  );
+  const name = useAppSelector((state) => state.produits.name);
+
+  // const clientFormModalVisibility: any = useAppSelector(
+  //   (state) => state.modals.clientFormModalVisibility
+  // );
+
+  useEffect(() => {
+    let size = 12;
+    dispatch(getAllProducts([size, page, name]));
+  }, [page, name]);
+  return (
+    <div className="flex flex-col">
+      <Header
+        image={InventaireHeaderIcon}
+        description="inventaire logo"
+        title={"Inventaire"}
+        number={totalElementsInTable}
+      />
+      <TableFunctions
+        nameSearchBar="search produit"
+        placeholder="Enter le nom d'un produit"
+        onShowFormModal={() => {
+          // dispatch(showClientFormModal());
+          // dispatch(SetFormType({ formType: "add" }));
+          dispatch(clearProduit());
+        }}
+        onSearch={(value: string) =>
+          dispatch(SearchProductByName({ name: value }))
+        }
+        csvData={produits}
+        filename="produits"
+      />
+
+      <div className="overflow-y-scroll scroll scroll-smooth scrollbar-hide  h-[70vh] py-10 mt-2">
+        <ProductCards produits={produits} />
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          onNextPage={() => dispatch(NextPage())}
+          onPreviousPage={() => dispatch(PreviousPage())}
+        />
+      </div>
+    </div>
+  );
 };
 
 export default Inventaire;

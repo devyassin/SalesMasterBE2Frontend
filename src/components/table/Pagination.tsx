@@ -29,6 +29,7 @@ const Pagination = ({
   };
 
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+  if (totalPages === 0) return;
 
   return (
     <nav className="flex justify-end mt-4">

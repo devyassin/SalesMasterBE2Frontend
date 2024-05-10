@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios, { AxiosInstance, AxiosResponse } from "axios";
+import axios, { AxiosInstance } from "axios";
 import { API_URL } from "../constants/endpoints";
 
 const baseURL = `${API_URL}`;
@@ -17,14 +17,13 @@ export class StateManagementHelper {
     });
   }
 
-  getAll = (params?: { size?: number; page?: number }) =>
+  getAll = (pagination: boolean) =>
     createAsyncThunk(
       `${this.resource}/all`,
-      async (): Promise<AxiosResponse> => {
+      async ([size, page, name]: any, { rejectWithValue }) => {
         try {
           let url = `/${this.resource}`;
-          if (params) {
-            const { size, page } = params;
+          if (pagination) {
             const queryParams = [];
             if (size) {
               queryParams.push(`size=${size}`);
@@ -32,13 +31,16 @@ export class StateManagementHelper {
             if (page) {
               queryParams.push(`page=${page}`);
             }
+            if (name !== undefined) {
+              queryParams.push(`name=${name}`);
+            }
             url += `?${queryParams.join("&")}`;
           }
 
           const response = await this.instance.get(url);
           return response.data;
         } catch (error: any) {
-          return Promise.reject(new Error(error.message));
+          return rejectWithValue(error);
         }
       }
     );

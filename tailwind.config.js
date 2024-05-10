@@ -41,6 +41,7 @@ export default {
       bluen: "rgba(199, 216, 235, 0.40)",
       darken: "rgba(63, 63, 70, 0.83)",
       darkentwo: "rgba(183, 183, 151, 0.58)",
+      bgSlate: "rgb(30 41 59)",
     },
     fontFamily: {
       sans: ["Mirza", "cursive"],

@@ -9,7 +9,7 @@ const SideNavBar = () => {
   const currentPath = location.pathname;
 
   return (
-    <div className="flex flex-col justify-between px-6 pt-8 pb-6 bg-dark-2 max-2sm:hidden">
+    <div className="flex flex-col  justify-between px-6 pt-8 pb-6 bg-dark-2 max-2sm:hidden">
       <div className=" flex w-[240px]  flex-col space-y-4 max-xl:w-[60px]">
         <div className="flex flex-col pb-8">
           <div className="flex items-center space-x-4">

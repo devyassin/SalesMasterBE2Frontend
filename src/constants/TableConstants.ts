@@ -6,3 +6,14 @@ export const tableClientFields = [
   "Phone",
   "Action",
 ];
+
+export const tableProductFields = [
+  "produitId",
+  "Nom",
+  "Description",
+  "Prix",
+  "QuantitéEnStock",
+  "Image",
+  "Action",
+];
+
