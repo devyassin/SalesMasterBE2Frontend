@@ -18,12 +18,15 @@
 
 **Backend:**
 
-![spring boot](https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=Spring&logoColor=white)&nbsp;
-![hibernate](https://user-images.githubusercontent.com/25181517/117207493-49665200-adf4-11eb-808e-a9c0fcc2a0a0.png){: width="50px"}&nbsp;
-![mongodb](https://user-images.githubusercontent.com/25181517/117207242-07d5a700-adf4-11eb-975e-be04e62b984b.png){: width="50px"}&nbsp;
-![mongodb](https://user-images.githubusercontent.com/25181517/192109061-e138ca71-337c-4019-8d42-4792fdaa7128.png){: width="50px"}&nbsp;
-![jwt](	https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)&nbsp;
-![jwt](	https://user-images.githubusercontent.com/25181517/186711335-a3729606-5a78-4496-9a36-06efcc74f800.png){: width="50px"}&nbsp;
+
+- spring boot
+- Hibernate
+- Maven
+- PostgreSQL
+- Postman
+- Swagger
+- jwt
+
 
 # 🎨 Desing
 
