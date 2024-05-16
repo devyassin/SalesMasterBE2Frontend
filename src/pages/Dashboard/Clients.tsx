@@ -6,6 +6,7 @@ import Pagination from "../../components/table/Pagination";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
+  GoToPage,
   SearchClientByName,
   clearClient,
   getAllClients,
@@ -17,7 +18,7 @@ import { tableClientFields } from "../../constants/TableConstants";
 import { NextPage, PreviousPage } from "../../store/ClientSlice";
 import {
   SetFormType,
-  showClientFormModal,
+  showFormModal,
   showoverlay,
 } from "../../store/ModalSlice";
 import ClientForm from "../../components/form/ClientForm";
@@ -33,7 +34,7 @@ const Clients = () => {
     (state) => state.clients.statusGetAllClients
   );
   const clientFormModalVisibility: any = useAppSelector(
-    (state) => state.modals.clientFormModalVisibility
+    (state) => state.modals.FormModalVisibility
   );
   useEffect(() => {
     let size = 10;
@@ -52,7 +53,7 @@ const Clients = () => {
         nameSearchBar="search client"
         placeholder="Enter le nom du client"
         onShowFormModal={() => {
-          dispatch(showClientFormModal());
+          dispatch(showFormModal());
           dispatch(SetFormType({ formType: "add" }));
           dispatch(clearClient());
         }}
@@ -70,7 +71,7 @@ const Clients = () => {
         onDelete={(id: string) => dispatch(removeClient(id))}
         onShowFormUpdate={(id: string) => {
           dispatch(getOneClient(id));
-          dispatch(showClientFormModal());
+          dispatch(showFormModal());
           dispatch(showoverlay());
           dispatch(SetFormType({ formType: "update" }));
         }}
@@ -79,6 +80,9 @@ const Clients = () => {
         page={page}
         totalPages={totalPages}
         onNextPage={() => dispatch(NextPage())}
+        onGoToPage={(element: number) => {
+          dispatch(GoToPage({ page: element-1 }));
+        }}
         onPreviousPage={() => dispatch(PreviousPage())}
       />
     </div>

@@ -1,13 +1,10 @@
-import { useDispatch } from "react-redux";
-import { GoToPage } from "../../store/ClientSlice";
-
 type Props = {
   element: number;
   isActive?: boolean;
+  onGoToPage: (element: number) => void;
 };
 
-const PageItem = ({ isActive, element }: Props) => {
-  const dispatch = useDispatch<any>();
+const PageItem = ({ isActive, element, onGoToPage }: Props) => {
   const baseClasses =
     "flex items-center cursor-pointer justify-center px-3 h-8 leading-tight border border-[#4a5568]";
 
@@ -17,12 +14,9 @@ const PageItem = ({ isActive, element }: Props) => {
 
   return (
     <li>
-      <a
-        onClick={() => dispatch(GoToPage({ page: element - 1 }))}
-        className={classes}
-      >
+      <div onClick={() => onGoToPage(element)} className={classes}>
         {element}
-      </a>
+      </div>
     </li>
   );
 };

@@ -4,6 +4,7 @@ import Header from "../../components/header/Header";
 import { useAppSelector } from "../../store/store";
 import { useEffect } from "react";
 import {
+  GoToPage,
   NextPage,
   PreviousPage,
   SearchProductByName,
@@ -14,6 +15,9 @@ import Pagination from "../../components/table/Pagination";
 import TableFunctions from "../../components/table/TableFunctions";
 import ProductCards from "../../components/inventaire/ProductCards";
 
+import ProductForm from "../../components/form/ProductForm";
+import { SetFormType, showFormModal } from "../../store/ModalSlice";
+
 const Inventaire = () => {
   const dispatch = useDispatch<any>();
   const produits: any = useAppSelector((state) => state.produits.data.content);
@@ -22,10 +26,9 @@ const Inventaire = () => {
   );
   const name = useAppSelector((state) => state.produits.name);
 
-  // const clientFormModalVisibility: any = useAppSelector(
-  //   (state) => state.modals.clientFormModalVisibility
-  // );
-
+  const productFormModalVisibility: any = useAppSelector(
+    (state) => state.modals.FormModalVisibility
+  );
   useEffect(() => {
     let size = 12;
     dispatch(getAllProducts([size, page, name]));
@@ -42,8 +45,8 @@ const Inventaire = () => {
         nameSearchBar="search produit"
         placeholder="Enter le nom d'un produit"
         onShowFormModal={() => {
-          // dispatch(showClientFormModal());
-          // dispatch(SetFormType({ formType: "add" }));
+          dispatch(showFormModal());
+          dispatch(SetFormType({ formType: "add" }));
           dispatch(clearProduit());
         }}
         onSearch={(value: string) =>
@@ -52,6 +55,7 @@ const Inventaire = () => {
         csvData={produits}
         filename="produits"
       />
+      {productFormModalVisibility && <ProductForm />}
 
       <div className="overflow-y-scroll scroll scroll-smooth scrollbar-hide  h-[70vh] py-10 mt-2">
         <ProductCards produits={produits} />
@@ -59,6 +63,9 @@ const Inventaire = () => {
           page={page}
           totalPages={totalPages}
           onNextPage={() => dispatch(NextPage())}
+          onGoToPage={(element: number) =>
+            dispatch(GoToPage({ page: element - 1 }))
+          }
           onPreviousPage={() => dispatch(PreviousPage())}
         />
       </div>

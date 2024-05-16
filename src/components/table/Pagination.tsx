@@ -1,3 +1,4 @@
+
 import PageItem from "./PageItem";
 
 type Props = {
@@ -5,6 +6,7 @@ type Props = {
   totalPages: number;
   onPreviousPage: () => void;
   onNextPage: () => void;
+  onGoToPage: (element: number) => void;
 };
 
 const Pagination = ({
@@ -12,6 +14,7 @@ const Pagination = ({
   totalPages,
   onPreviousPage,
   onNextPage,
+  onGoToPage,
 }: Props) => {
   const isPreviousDisabled = page === 0;
   const isNextDisabled = page === totalPages - 1;
@@ -50,6 +53,7 @@ const Pagination = ({
           <PageItem
             key={pageNumber}
             element={pageNumber}
+            onGoToPage={onGoToPage}
             isActive={page + 1 === pageNumber}
           />
         ))}

@@ -22,7 +22,7 @@ const initialState: any = {
     nom: "",
     description: "",
     prix: "",
-    quantitéEnStock: "",
+    quantiteEnStock: "",
     image: "",
   },
   statusGetAllProducts: "",
@@ -45,7 +45,10 @@ const productSlice = createSlice({
       state: any,
       { payload }: PayloadAction<{ name: any; value: any }>
     ) => {
-      const { name, value } = payload;
+      let { name, value } = payload;
+      if (name == "prix" || name == "quantiteEnStock") {
+        value = parseFloat(value);
+      }
       state.produit[name] = value;
     },
     clearProduit: (state) => {
@@ -54,6 +57,7 @@ const productSlice = createSlice({
     clearStatusProduit: (state) => {
       state.statusAddProducts = "";
       state.statusUpdateOneProducts = "";
+      state.statusRemoveProducts = "";
     },
     NextPage: (state) => {
       state.data.page += 1;
@@ -111,17 +115,17 @@ const productSlice = createSlice({
       })
       .addCase(getOneProduct.fulfilled, (state: any, { payload }) => {
         state.statusGetOneProducts = "succeeded";
-        state.client = payload;
+        state.produit = payload;
       })
       .addCase(getOneProduct.rejected, (state, { payload }: any) => {
         state.statusGetOneProducts = "failed";
         state.errorGetOneProducts = payload.response.data.message;
       })
       .addCase(updateOneProduct.pending, (state) => {
-        state.statusUpdateOneClient = "loading";
+        state.statusUpdateOneProducts = "loading";
       })
       .addCase(updateOneProduct.fulfilled, (state: any, { payload }) => {
-        state.statusUpdateOneClient = "succeeded";
+        state.statusUpdateOneProducts = "succeeded";
         const index = state.data.content.findIndex(
           (produit: any) => produit.produitId === state.produit.produitId
         );

@@ -1,20 +1,21 @@
 import { motion } from "framer-motion";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { showClientFormModal, showoverlay } from "../../store/ModalSlice";
+import { showFormModal, showoverlay } from "../../store/ModalSlice";
 import { ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
   formHeader: string;
+  yaxe: string;
 };
 
-const Modal = ({ children, formHeader }: Props) => {
+const Modal = ({ children, formHeader, yaxe }: Props) => {
   const dispatch = useDispatch<any>();
   return (
     <motion.div
       animate={{
-        y: "-70%",
+        y: `${yaxe}`,
         scale: 1,
       }}
       initial={{
@@ -32,7 +33,7 @@ const Modal = ({ children, formHeader }: Props) => {
         <h1 className="text-2xl">{formHeader}</h1>
         <AiFillCloseCircle
           onClick={() => {
-            dispatch(showClientFormModal());
+            dispatch(showFormModal());
             dispatch(showoverlay());
           }}
           className="text-soft-read duration-150 cursor-pointer hover:opacity-75"

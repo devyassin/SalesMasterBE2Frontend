@@ -39,3 +39,5 @@ export const userTypeSelectStyling = {
     color: "white",
   }),
 };
+
+export const inputStyle = `px-6 py-4 w-full outline-none input-creategig`;

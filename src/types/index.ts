@@ -6,6 +6,7 @@ export interface Client {
 }
 
 export interface Produit {
+  produitId:number;
   nom: string;
   description: string;
   prix: number;

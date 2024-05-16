@@ -2,7 +2,7 @@ import { ChangeEvent } from "react";
 import GreenBtn from "../ui/button/GreenBtn";
 import FormModal from "./Modal";
 import { useDispatch } from "react-redux";
-import { handleGigForm, updateOneClient } from "../../store/ClientSlice";
+import { handleGigForm } from "../../store/ClientSlice";
 import useAddNewClient from "../../hooks/useAddNewClient";
 import { useAppSelector } from "../../store/store";
 import { Client } from "../../types";
@@ -30,6 +30,7 @@ const ClientForm = () => {
   const inputStyle = `px-6 py-4 w-full outline-none input-creategig`;
   return (
     <FormModal
+      yaxe="-70%"
       formHeader={`${formType === "add" ? "Ajouer Client" : "Modifier Client"}`}
     >
       <form
