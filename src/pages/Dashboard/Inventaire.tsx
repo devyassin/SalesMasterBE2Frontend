@@ -17,10 +17,13 @@ import ProductCards from "../../components/inventaire/ProductCards";
 
 import ProductForm from "../../components/form/ProductForm";
 import { SetFormType, showFormModal } from "../../store/ModalSlice";
+import { Produit } from "@/types";
 
 const Inventaire = () => {
   const dispatch = useDispatch<any>();
-  const produits: any = useAppSelector((state) => state.produits.data.content);
+  const produits: Produit[] = useAppSelector(
+    (state) => state.produits.data.content
+  );
   const { page, totalPages, totalElementsInTable } = useAppSelector(
     (state) => state.produits.data
   );
@@ -31,7 +34,7 @@ const Inventaire = () => {
   );
   useEffect(() => {
     let size = 12;
-    dispatch(getAllProducts([size, page, name]));
+    dispatch(getAllProducts([(size = 12), page, name]));
   }, [page, name]);
   return (
     <div className="flex flex-col">

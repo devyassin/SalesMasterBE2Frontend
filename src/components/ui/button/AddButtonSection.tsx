@@ -12,6 +12,7 @@ const AddButtonSection = ({ onShowFormModal }: Props) => {
         dispatch(showoverlay());
         onShowFormModal();
       }}
+      width={45}
       src={AddButton}
       alt="add btn"
       className="cursor-pointer hover:opacity-80 duration-300"

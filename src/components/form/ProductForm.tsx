@@ -10,6 +10,7 @@ import { handleGigForm } from "../../store/ProductSlice";
 import { Produit } from "../../types";
 import useUpdateOneProduct from "../../hooks/useUpdateOneProduct";
 import useRemoveOneProduct from "../../hooks/useRemoveProduct";
+import useAddNewProduct from "../../hooks/useAddNewProduct";
 
 const ProductForm = () => {
   const dispatch = useDispatch<any>();
@@ -26,6 +27,7 @@ const ProductForm = () => {
   };
 
   const { updateProduct } = useUpdateOneProduct();
+  const { addNewProduct } = useAddNewProduct();
   const { removeOneProduct } = useRemoveOneProduct();
   return (
     <FormModal
@@ -35,7 +37,7 @@ const ProductForm = () => {
       }`}
     >
       <form
-        onSubmit={formType === "add" ? () => {} : updateProduct}
+        onSubmit={formType === "add" ? addNewProduct : updateProduct}
         className="grid grid-cols-3 gap-8"
       >
         <InputFileUpload produitImg={produit.image} formType={formType} />

@@ -1,7 +1,12 @@
 import { useDispatch } from "react-redux";
 import { Produit } from "../../../types";
 import { getOneProduct } from "../../../store/ProductSlice";
-import { SetFormType, showFormModal, showoverlay } from "../../../store/ModalSlice";
+import {
+  SetFormType,
+  showFormModal,
+  showoverlay,
+} from "../../../store/ModalSlice";
+import { path } from "../../../constants/endpoints";
 
 type Props = {
   produit: Produit;
@@ -19,7 +24,7 @@ const Card = ({ produit }: Props) => {
       : quantiteEnStock > 20
       ? "Moyen"
       : "Faible";
-      console.log(produit.produitId);
+
   return (
     <div
       onClick={() => {
@@ -36,7 +41,11 @@ const Card = ({ produit }: Props) => {
         {/* image */}
         <div>
           <img
-            src={produit.image}
+            src={`${
+              produit.image.startsWith("http")
+                ? produit.image
+                : `${path}${produit.image}`
+            }`}
             alt="pic"
             className="h-[166px] w-full rounded-t-[20px] border-b border-white"
             width={1000}
@@ -65,7 +74,7 @@ const Card = ({ produit }: Props) => {
         </div>
         {/*  */}
         <div className="flex flex-col justify-between ">
-          <div className="font-tajwal text-[12px] opacity-60  pt-4 px-3 tracking-wide leading-3 font-thin">
+          <div className="font-tajwal w-full text-[12px] opacity-60  pt-4 px-3 tracking-wide leading-3 font-thin">
             {truncatedDescription} ......
           </div>
 

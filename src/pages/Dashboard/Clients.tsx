@@ -22,10 +22,13 @@ import {
   showoverlay,
 } from "../../store/ModalSlice";
 import ClientForm from "../../components/form/ClientForm";
+import { Client } from "@/types";
 
 const Clients = () => {
   const dispatch = useDispatch<any>();
-  const clients: any = useAppSelector((state) => state.clients.data.content);
+  const clients: Client[] = useAppSelector(
+    (state) => state.clients.data.content
+  );
   const { page, totalPages, totalElementsInTable } = useAppSelector(
     (state) => state.clients.data
   );
@@ -81,7 +84,7 @@ const Clients = () => {
         totalPages={totalPages}
         onNextPage={() => dispatch(NextPage())}
         onGoToPage={(element: number) => {
-          dispatch(GoToPage({ page: element-1 }));
+          dispatch(GoToPage({ page: element - 1 }));
         }}
         onPreviousPage={() => dispatch(PreviousPage())}
       />

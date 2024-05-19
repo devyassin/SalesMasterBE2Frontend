@@ -1,4 +1,3 @@
-
 import PageItem from "./PageItem";
 
 type Props = {

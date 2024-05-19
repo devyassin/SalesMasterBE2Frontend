@@ -12,7 +12,7 @@ const ClientForm = () => {
   const dispatch = useDispatch<any>();
 
   const client: Client = useAppSelector((state) => state.clients.client);
-  const formType = useAppSelector((state) => state.modals.formType);
+  const formType: string = useAppSelector((state) => state.modals.formType);
 
   const { addNewClient } = useAddNewClient();
 

@@ -21,23 +21,23 @@ const TableFunctions = ({
   placeholder,
 }: Props) => {
   return (
-    <div className="flex justify-between items-center mt-10 space-x-24 mr-10">
+    <div className="flex justify-between items-center mt-10 space-x-24 mr-4">
       <SearchBar
         onSearch={onSearch}
         name={nameSearchBar}
         placeholder={placeholder}
       />
-      <div className="flex space-x-8 pr-10 items-center">
-        <div className="flex  space-x-6">
+      <div className="flex space-x-8 pr-10 items-center ">
+        <div className="flex  space-x-4 ">
           <StyleOne>
-            <TfiFilter size={25} />
+            <TfiFilter size={20} />
           </StyleOne>
           <StyleOne>
-            <TfiImport size={25} />
+            <TfiImport size={20} />
           </StyleOne>
           <CSVLink data={csvData ? csvData : ""} filename={filename}>
             <StyleOne>
-              <TfiExport size={25} />
+              <TfiExport size={20} />
             </StyleOne>
           </CSVLink>
         </div>

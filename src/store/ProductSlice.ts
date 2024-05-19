@@ -5,10 +5,11 @@ import { StateManagementHelper } from "../helpers/StateManagementHelper ";
 const apiService = new StateManagementHelper("produits");
 
 export const getAllProducts = apiService.getAll(true);
-export const addProduct = apiService.add();
+// export const addProduct = apiService.add();
 export const removeProduct = apiService.delete();
 export const getOneProduct = apiService.getOne();
 export const updateOneProduct = apiService.update();
+export const addProduct = apiService.uploadFile();
 
 const initialState: any = {
   data: {

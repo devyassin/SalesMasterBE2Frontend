@@ -23,5 +23,5 @@ export const ProductValidation = z.object({
     .number()
     .positive("Stock quantity must be non-negative")
     .int(), // Ensures integer stock
-  image: z.string().url("Image URL must be a valid URL").optional(),
+  image: z.any(),
 });

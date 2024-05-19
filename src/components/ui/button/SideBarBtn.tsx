@@ -15,11 +15,11 @@ const SideBarBtn = ({ route, name, icon, currentLocation }: Props) => {
           : " hover:opacity-60 hover:duration-300"
       }  text-2xl 
         
-       h-[62px] pl-4 rounded-xl flex items-center space-x-6 font-tajwal`}
+       h-[32px] pl-4 rounded-xl flex items-center space-x-6 font-tajwal`}
       to={route}
     >
-      <img src={icon} alt={name} />
-      <h1 className="text-xl text-white max-xl:hidden">{name}</h1>
+      <img width={20} src={icon} alt={name} />
+      <h1 className="text-[18px] text-white max-xl:hidden">{name}</h1>
     </Link>
   );
 };

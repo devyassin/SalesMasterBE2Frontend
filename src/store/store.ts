@@ -10,6 +10,8 @@ const store = configureStore({
     produits: ProductSlice,
     modals: ModalSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
 });
 
 export const useAppDispatch: () => typeof store.dispatch = useDispatch;

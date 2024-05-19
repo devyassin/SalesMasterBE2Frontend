@@ -99,4 +99,37 @@ export class StateManagementHelper {
         }
       }
     );
+  uploadFile = () =>
+    createAsyncThunk(
+      `${this.resource}/upload`,
+      async (
+        { file, nom, description, prix, quantiteEnStock }: any,
+        { rejectWithValue }
+      ) => {
+        try {
+          const formData = new FormData();
+          formData.append("imageFile", file);
+
+          const queryParams = new URLSearchParams({
+            nom,
+            description,
+            prix: prix.toString(),
+            quantiteEnStock: quantiteEnStock.toString(),
+          }).toString();
+
+          const response = await this.instance.post(
+            `/${this.resource}?${queryParams}`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
+          return response.data;
+        } catch (error: any) {
+          return rejectWithValue(error);
+        }
+      }
+    );
 }
