@@ -8,9 +8,10 @@ type Props = {
   children: ReactNode;
   formHeader: string;
   yaxe: string;
+  clear?: () => void;
 };
 
-const Modal = ({ children, formHeader, yaxe }: Props) => {
+const Modal = ({ children, formHeader, yaxe, clear }: Props) => {
   const dispatch = useDispatch<any>();
   return (
     <motion.div
@@ -35,6 +36,9 @@ const Modal = ({ children, formHeader, yaxe }: Props) => {
           onClick={() => {
             dispatch(showFormModal());
             dispatch(showoverlay());
+            {
+              clear && clear();
+            }
           }}
           className="text-soft-read duration-150 cursor-pointer hover:opacity-75"
           size={30}

@@ -22,8 +22,11 @@ const Table = ({
         <tbody className="overflow-y-scroll scroll scroll-smooth little-scrollbar-global ">
           {statusGetAllData === "succeeded" ? (
             data.map((objData: Object, i: number) => {
+  
+              
               const stringObjData: string[] = Object.values(objData);
 
+            
               return (
                 <Row
                   onShowFormUpdate={onShowFormUpdate}

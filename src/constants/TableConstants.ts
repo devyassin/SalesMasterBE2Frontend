@@ -17,3 +17,12 @@ export const tableProductFields = [
   "Action",
 ];
 
+export const tableVenteFields = [
+  "venteId",
+  "Date",
+  "Nom Client",
+  "Statut",
+  "Total",
+  "T.Produits Type",
+  "Action",
+];

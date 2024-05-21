@@ -22,7 +22,8 @@ import {
   showoverlay,
 } from "../../store/ModalSlice";
 import ClientForm from "../../components/form/ClientForm";
-import { Client } from "@/types";
+import { Client } from "../../types";
+
 
 const Clients = () => {
   const dispatch = useDispatch<any>();

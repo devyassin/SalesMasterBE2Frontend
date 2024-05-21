@@ -8,7 +8,7 @@ type Props = {
   csvData: Object[];
   filename: string;
   onShowFormModal: () => void;
-  onSearch: (value: string) => void;
+  onSearch?: (value: string) => void;
   nameSearchBar: string;
   placeholder: string;
 };
@@ -22,12 +22,14 @@ const TableFunctions = ({
 }: Props) => {
   return (
     <div className="flex justify-between items-center mt-10 space-x-24 mr-4">
-      <SearchBar
-        onSearch={onSearch}
-        name={nameSearchBar}
-        placeholder={placeholder}
-      />
-      <div className="flex space-x-8 pr-10 items-center ">
+      {onSearch && (
+        <SearchBar
+          onSearch={onSearch}
+          name={nameSearchBar}
+          placeholder={placeholder}
+        />
+      )}
+      <div className={`flex space-x-8 ${onSearch && "pr-10"} items-center`}>
         <div className="flex  space-x-4 ">
           <StyleOne>
             <TfiFilter size={20} />

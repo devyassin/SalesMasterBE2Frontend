@@ -3,11 +3,13 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import ClientSlice from "./ClientSlice";
 import ModalSlice from "./ModalSlice";
 import ProductSlice from "./ProductSlice";
+import VenteSlice from "./VenteSlice";
 
 const store = configureStore({
   reducer: {
     clients: ClientSlice,
     produits: ProductSlice,
+    ventes: VenteSlice,
     modals: ModalSlice,
   },
   middleware: (getDefaultMiddleware) =>

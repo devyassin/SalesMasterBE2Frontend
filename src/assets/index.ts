@@ -15,6 +15,7 @@ import ClientsHeaderIcon from "./Clients.svg";
 import InventaireHeaderIcon from "./inventaireHeaderIcon.svg";
 import AddButton from "./AddButton.svg";
 import productimg from "./productimg.jpg";
+import venteLogo from "./VenteLogo.svg";
 
 export {
   hiddenEye,
@@ -34,4 +35,5 @@ export {
   AddButton,
   InventaireHeaderIcon,
   productimg,
+  venteLogo,
 };

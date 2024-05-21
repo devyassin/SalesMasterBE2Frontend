@@ -6,7 +6,7 @@ import InputFileUpload from "./InputFileUpload";
 
 import FormModal from "./Modal";
 import { ChangeEvent } from "react";
-import { handleGigForm } from "../../store/ProductSlice";
+import { clearProduit, handleGigForm } from "../../store/ProductSlice";
 import { Produit } from "../../types";
 import useUpdateOneProduct from "../../hooks/useUpdateOneProduct";
 import useRemoveOneProduct from "../../hooks/useRemoveProduct";
@@ -32,6 +32,7 @@ const ProductForm = () => {
   return (
     <FormModal
       yaxe="-50%"
+      clear={() => dispatch(clearProduit())}
       formHeader={`${
         formType === "add" ? "Ajouer Produit" : "Modifier Produit"
       }`}

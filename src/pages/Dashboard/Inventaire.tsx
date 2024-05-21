@@ -17,7 +17,8 @@ import ProductCards from "../../components/inventaire/ProductCards";
 
 import ProductForm from "../../components/form/ProductForm";
 import { SetFormType, showFormModal } from "../../store/ModalSlice";
-import { Produit } from "@/types";
+import { Produit } from "../../types";
+
 
 const Inventaire = () => {
   const dispatch = useDispatch<any>();
@@ -34,7 +35,7 @@ const Inventaire = () => {
   );
   useEffect(() => {
     let size = 12;
-    dispatch(getAllProducts([(size = 12), page, name]));
+    dispatch(getAllProducts([size, page, name]));
   }, [page, name]);
   return (
     <div className="flex flex-col">
