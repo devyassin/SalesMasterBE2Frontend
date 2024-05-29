@@ -12,7 +12,10 @@ import useUpdateOneProduct from "../../hooks/useUpdateOneProduct";
 import useRemoveOneProduct from "../../hooks/useRemoveProduct";
 import useAddNewProduct from "../../hooks/useAddNewProduct";
 
-const ProductForm = () => {
+type Props = {
+  venteDetails?: boolean;
+};
+const ProductForm = ({ venteDetails }: Props) => {
   const dispatch = useDispatch<any>();
   const produit: Produit = useAppSelector((state) => state.produits.produit);
   const formType = useAppSelector((state) => state.modals.formType);
@@ -34,7 +37,9 @@ const ProductForm = () => {
       yaxe="-50%"
       clear={() => dispatch(clearProduit())}
       formHeader={`${
-        formType === "add" ? "Ajouer Produit" : "Modifier Produit"
+        formType === "add"
+          ? "Ajouer Produit"
+          : `${!venteDetails ? "Modifier Produit" : "Detail Produit"}`
       }`}
     >
       <form
@@ -73,32 +78,36 @@ const ProductForm = () => {
         </div>
         <textarea
           name="description"
-          className={`${inputStyle} col-span-3 little-scrollbar`}
+          className={`${inputStyle} col-span-3 ${
+            venteDetails && "h-[230px]"
+          } little-scrollbar`}
           rows={4}
           value={produit.description}
           onChange={handleChange}
           cols={50}
           placeholder="Description"
         />
-        <div className="pt-4 flex space-x-4">
-          <GreenBtn
-            text={`${formType === "add" ? "Ajouter" : "Modifer"}`}
-            customClasses="py-2 px-8"
-          />
-          {formType !== "add" && (
-            <div
-              onClick={() => {
-                removeOneProduct();
-              }}
-            >
-              <GreenBtn
-                typeBtn="button"
-                text={"Supprimer"}
-                customClasses="py-2 px-8 bg-soft-read"
-              />
-            </div>
-          )}
-        </div>
+        {!venteDetails && (
+          <div className="pt-4 flex space-x-4">
+            <GreenBtn
+              text={`${formType === "add" ? "Ajouter" : "Modifer"}`}
+              customClasses="py-2 px-8"
+            />
+            {formType !== "add" && (
+              <div
+                onClick={() => {
+                  removeOneProduct();
+                }}
+              >
+                <GreenBtn
+                  typeBtn="button"
+                  text={"Supprimer"}
+                  customClasses="py-2 px-8 bg-soft-read"
+                />
+              </div>
+            )}
+          </div>
+        )}
       </form>
     </FormModal>
   );

@@ -5,6 +5,7 @@ import { useAppSelector } from "../store/store";
 import { useDispatch } from "react-redux";
 import { ProductValidation } from "../lib/validation/ClientValidation";
 import { clearStatusProduit, updateOneProduct } from "../store/ProductSlice";
+import { showFormModal, showoverlay } from "../store/ModalSlice";
 
 const useUpdateOneProduct = () => {
   const dispatch = useDispatch<any>();
@@ -16,6 +17,8 @@ const useUpdateOneProduct = () => {
       Toastsuccess("product Updated successfully !");
       setTimeout(() => {
         dispatch(clearStatusProduit());
+        dispatch(showFormModal());
+        dispatch(showoverlay());
       }, 1500);
     }
 

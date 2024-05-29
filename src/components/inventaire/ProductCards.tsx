@@ -5,9 +5,11 @@ import CardSkeleton from "../ui/skeleton/CardSkeleton";
 
 type Props = {
   produits: Produit[];
+  venteDetails?: boolean;
+  quantites?: number[];
 };
 
-const ProductCards = ({ produits }: Props) => {
+const ProductCards = ({ produits, venteDetails, quantites }: Props) => {
   const statusGetAllProducts = useAppSelector(
     (state) => state.produits.statusGetAllProducts
   );
@@ -18,9 +20,15 @@ const ProductCards = ({ produits }: Props) => {
 max-lg:mx-16 max-sm:grid-cols-1 max-sm:mx-16 gap-8 mt-8 mx-10 pb-4
 "
     >
-      {statusGetAllProducts == "succeeded" ? (
+      {statusGetAllProducts == "succeeded" || venteDetails ? (
         produits.map((produit: Produit, i) => {
-          return <Card key={i} produit={produit} />;
+          return (
+            <Card
+              quantity={quantites && quantites[i]}
+              key={i}
+              produit={produit}
+            />
+          );
         })
       ) : (
         <CardSkeleton />

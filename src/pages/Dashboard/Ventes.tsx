@@ -4,7 +4,11 @@ import Header from "../../components/header/Header";
 import { Vente } from "../../types";
 import { useAppSelector } from "../../store/store";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
+  GoToPage,
+  NextPage,
+  PreviousPage,
   clearVente,
   getAllVentes,
   getOneVente,
@@ -12,15 +16,13 @@ import {
 } from "../../store/VenteSlice";
 import Table from "../../components/table/Table";
 import { tableVenteFields } from "../../constants/TableConstants";
-import {
-  SetFormType,
-  showFormModal,
-  showoverlay,
-} from "../../store/ModalSlice";
+import { SetFormType, showFormModal } from "../../store/ModalSlice";
 import TableFunctions from "../../components/table/TableFunctions";
 import VenteForm from "../../components/form/VenteForm";
+import Pagination from "../../components/table/Pagination";
 
 const Ventes = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch<any>();
   const ventes: Vente[] = useAppSelector((state) => state.ventes.data.content);
   const { page, totalPages, totalElementsInTable } = useAppSelector(
@@ -66,10 +68,17 @@ const Ventes = () => {
         onDelete={(id: string) => dispatch(removeVente(id))}
         onShowFormUpdate={(id: string) => {
           dispatch(getOneVente(id));
-          dispatch(showFormModal());
-          dispatch(showoverlay());
-          dispatch(SetFormType({ formType: "update" }));
+          navigate(`/ventes/${id}`);
         }}
+      />
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        onNextPage={() => dispatch(NextPage())}
+        onGoToPage={(element: number) => {
+          dispatch(GoToPage({ page: element - 1 }));
+        }}
+        onPreviousPage={() => dispatch(PreviousPage())}
       />
     </div>
   );

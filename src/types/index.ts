@@ -1,4 +1,5 @@
 export interface Client {
+  clientId: number;
   nom: string;
   adresse: string;
   email: string;
@@ -25,10 +26,11 @@ export enum Status {
   COMPLETEE,
 }
 export interface Vente {
+  venteId: number;
   dateVente: Date;
   clientName: string;
   statut: Status;
   total: number;
   totalProductTypes: number;
-  // produitQauntiteDaos: ProduitQauntite[];
+  produitQauntiteDaos: ProduitQauntite[];
 }

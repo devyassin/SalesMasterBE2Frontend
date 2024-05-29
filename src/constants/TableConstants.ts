@@ -20,9 +20,9 @@ export const tableProductFields = [
 export const tableVenteFields = [
   "venteId",
   "Date",
-  "Nom Client",
   "Statut",
   "Total",
+  "Nom Client",
   "T.Produits Type",
   "Action",
 ];

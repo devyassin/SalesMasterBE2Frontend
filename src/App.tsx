@@ -8,6 +8,7 @@ import {
   Inventaire,
   Login,
   ProtectedRoute,
+  VenteDetails,
   Ventes,
 } from "./pages";
 import SignUp from "./pages/PublicRoutes/SignUp";
@@ -37,7 +38,10 @@ function App() {
             <Route index element={<Dashborad />} />
             <Route path="dashboard" element={<Dashborad />} />
             <Route path="clients" element={<Clients />} />
-            <Route path="ventes" element={<Ventes />} />
+            <Route path="ventes">
+              <Route path="/ventes" element={<Ventes />} />
+              <Route path=":id" element={<VenteDetails />} />
+            </Route>
             <Route path="inventaire" element={<Inventaire />} />
             <Route path="facturation" element={<Facturation />} />
           </Route>

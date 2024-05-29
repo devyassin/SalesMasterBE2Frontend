@@ -10,9 +10,10 @@ import { path } from "../../../constants/endpoints";
 
 type Props = {
   produit: Produit;
+  quantity?: number;
 };
 
-const Card = ({ produit }: Props) => {
+const Card = ({ produit, quantity }: Props) => {
   const dispatch = useDispatch<any>();
   let description = produit.description;
   let truncatedDescription =
@@ -39,7 +40,15 @@ const Card = ({ produit }: Props) => {
       {/* container 1 */}
       <div className="relative ">
         {/* image */}
-        <div>
+        <div className="relative">
+          {quantity && (
+            <div
+              className="absolute flex items-center justify-center 
+          right-0 mr-4 mt-2 border  bg-[#2d3748] text-[22px] rounded-full h-[40px] w-[40px]"
+            >
+              {quantity}
+            </div>
+          )}
           <img
             src={`${
               produit.image.startsWith("http")

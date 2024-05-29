@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { StateManagementHelper } from "../helpers/StateManagementHelper ";
+import { Vente } from "../types";
 
 const apiService = new StateManagementHelper("ventes");
 
@@ -18,10 +19,10 @@ const initialState: any = {
   },
 
   vente: {
-    clientName: "",
+    client: {},
     status: "",
+    dateVente: "",
     total: "",
-    telephone: "",
     ProduitQauntiteDao: [],
   },
   statusGetAllVentes: "",
@@ -45,7 +46,14 @@ const venteSlice = createSlice({
       { payload }: PayloadAction<{ name: any; value: any }>
     ) => {
       const { name, value } = payload;
-      state.vente[name] = value;
+      if (name === "ProduitQauntiteDao") {
+        console.log(value);
+        let products = value.map((val: any) => val.value);
+
+        state.vente.ProduitQauntiteDao = products;
+      } else {
+        state.vente[name] = value;
+      }
     },
     clearVente: (state) => {
       state.vente = initialState.vente;
@@ -92,10 +100,10 @@ const venteSlice = createSlice({
       })
       .addCase(removeVente.fulfilled, (state: any, { payload }) => {
         state.statusRemoveVente = "succeeded";
-        // const id = payload.clientId;
-        // state.data.content = state.data.content.filter((client: any) => {
-        //   return client.clientId !== id;
-        // });
+        const id = payload.venteId;
+        state.data.content = state.data.content.filter((vente: Vente) => {
+          return vente.venteId !== id;
+        });
         state.data.totalElementsInTable -= 1;
       })
       .addCase(removeVente.rejected, (state, { payload }: any) => {

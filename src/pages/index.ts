@@ -6,6 +6,7 @@ import Dashborad from "./Dashboard/Dashborad ";
 import Ventes from "./Dashboard/Ventes";
 import Inventaire from "./Dashboard/Inventaire";
 import Facturation from "./Dashboard/Facturation";
+import VenteDetails from "./NestedRoutes/VenteDetails";
 
 export {
   Login,
@@ -16,4 +17,5 @@ export {
   Ventes,
   Inventaire,
   Facturation,
+  VenteDetails,
 };
