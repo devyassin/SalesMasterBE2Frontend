@@ -129,3 +129,8 @@ body::-webkit-scrollbar-thumb {
   top: 0;
   height: 100%; /* Adjust the height as needed */
 }
+
+.top-layer {
+  position: relative; /* or absolute/fixed/sticky as needed */
+  z-index: 1000; /* Choose a high value to ensure it is on top */
+}

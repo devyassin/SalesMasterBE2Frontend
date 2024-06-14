@@ -84,6 +84,19 @@ export class StateManagementHelper {
         }
       }
     );
+    updatePatch = () =>
+    createAsyncThunk(
+      `${this.resource}/update`,
+      async ([id, data]: any, { rejectWithValue }) => {
+        try {
+          const url = `/${this.resource}/${id}`;
+          const response = await this.instance.patch(url, data);
+          return response.data;
+        } catch (error: any) {
+          return rejectWithValue(error);
+        }
+      }
+    );
 
   delete = () =>
     createAsyncThunk(

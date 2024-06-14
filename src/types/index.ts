@@ -21,9 +21,9 @@ export interface ProduitQauntite {
 }
 
 export enum Status {
-  NOUVELLE,
-  ENCOURS,
-  COMPLETEE,
+  NOUVELLE = "NOUVELLE",
+  ENCOURS = "ENCOURS",
+  COMPLETEE = "COMPLETEE",
 }
 export interface Vente {
   venteId: number;

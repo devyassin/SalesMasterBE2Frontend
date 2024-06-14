@@ -9,7 +9,7 @@ export const getAllVentes = apiService.getAll(true);
 export const addVente = apiService.add();
 export const removeVente = apiService.delete();
 export const getOneVente = apiService.getOne();
-export const updateOneVente = apiService.update();
+export const updateOneVente = apiService.updatePatch();
 
 const initialState: any = {
   data: {
