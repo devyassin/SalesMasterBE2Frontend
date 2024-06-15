@@ -26,3 +26,11 @@ export const tableVenteFields = [
   "T.Produits Type",
   "Action",
 ];
+
+export const tableFactureFields = [
+  "factureId",
+  "Date Facturation",
+  "Total",
+  "PDF",
+  "Action",
+];

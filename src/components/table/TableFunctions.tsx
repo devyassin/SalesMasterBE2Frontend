@@ -7,7 +7,7 @@ import { CSVLink } from "react-csv";
 type Props = {
   csvData: Object[];
   filename: string;
-  onShowFormModal: () => void;
+  onShowFormModal?: () => void;
   onSearch?: (value: string) => void;
   nameSearchBar: string;
   placeholder: string;
@@ -43,7 +43,9 @@ const TableFunctions = ({
             </StyleOne>
           </CSVLink>
         </div>
-        <AddButtonSection onShowFormModal={onShowFormModal} />
+        {onShowFormModal && (
+          <AddButtonSection onShowFormModal={onShowFormModal} />
+        )}
       </div>
     </div>
   );

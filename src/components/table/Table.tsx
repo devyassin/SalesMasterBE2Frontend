@@ -5,7 +5,7 @@ type Props = {
   statusGetAllData: string;
   feilds: string[];
   onDelete: (id: string) => void;
-  onShowFormUpdate: (id: string) => void;
+  onShowFormUpdate?: (id: string) => void;
 };
 
 const Table = ({
@@ -22,14 +22,13 @@ const Table = ({
         <tbody className="overflow-y-scroll scroll scroll-smooth little-scrollbar-global ">
           {statusGetAllData === "succeeded" ? (
             data.map((objData: Object, i: number) => {
-  
-              
               const stringObjData: string[] = Object.values(objData);
 
-            
               return (
                 <Row
-                  onShowFormUpdate={onShowFormUpdate}
+                  onShowFormUpdate={
+                    onShowFormUpdate ? onShowFormUpdate : () => {}
+                  }
                   onDelete={onDelete}
                   key={i}
                   cells={stringObjData}

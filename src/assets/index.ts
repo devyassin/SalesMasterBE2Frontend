@@ -13,6 +13,7 @@ import SalesMasterIcon1 from "./SalesMasterIcon1.svg";
 import SalesMasterIcon2 from "./SalesMasterIcon2.svg";
 import ClientsHeaderIcon from "./Clients.svg";
 import InventaireHeaderIcon from "./inventaireHeaderIcon.svg";
+import FactureHeaderIcon from "./FactureHeaderIcon.svg";
 import AddButton from "./AddButton.svg";
 import productimg from "./productimg.jpg";
 import venteLogo from "./VenteLogo.svg";
@@ -36,4 +37,5 @@ export {
   InventaireHeaderIcon,
   productimg,
   venteLogo,
+  FactureHeaderIcon,
 };

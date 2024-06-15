@@ -25,6 +25,7 @@ export enum Status {
   ENCOURS = "ENCOURS",
   COMPLETEE = "COMPLETEE",
 }
+
 export interface Vente {
   venteId: number;
   dateVente: Date;
@@ -33,4 +34,12 @@ export interface Vente {
   total: number;
   totalProductTypes: number;
   produitQauntiteDaos: ProduitQauntite[];
+}
+
+export interface Facture {
+  factureId: number;
+  dateFacturation: Date;
+  montantTotal: number;
+  vente: Vente;
+  pdf: string;
 }
