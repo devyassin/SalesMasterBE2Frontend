@@ -134,3 +134,7 @@ body::-webkit-scrollbar-thumb {
   position: relative; /* or absolute/fixed/sticky as needed */
   z-index: 1000; /* Choose a high value to ensure it is on top */
 }
+
+.tajwal {
+  @apply font-tajwal;
+}

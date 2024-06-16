@@ -74,7 +74,17 @@ const VenteDetails = () => {
           status={statusUpdateOneVente}
           customClasses="w-[75px] h-[75px]"
         />
-
+        {/* <div>
+          <PDFDownloadLink
+            fileName="facture"
+            about="facture details"
+            document={<FacturationDetails />}
+          >
+            {({ blob, url, loading, error }) =>
+              loading ? "Loading document..." : "Download now!"
+            }
+          </PDFDownloadLink>
+        </div> */}
         <div className="grid grid-cols-2 gap-x-8 mt-20">
           <CardInfoDetail title="Client" data={clientData} />
           <CardInfoDetail title="Vente" data={venteData} />

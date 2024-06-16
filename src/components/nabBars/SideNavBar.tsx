@@ -7,7 +7,14 @@ import LogoutBtn from "../ui/button/LogoutBtn";
 const SideNavBar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
+  const hiddenPathPatterns = [/^\/some-other-path$/];
+  const shouldHideSidebar = hiddenPathPatterns.some((pattern) =>
+    pattern.test(currentPath)
+  );
 
+  if (shouldHideSidebar) {
+    return null;
+  }
   return (
     <div className="flex flex-col  justify-between px-6 pt-8 pb-6 bg-dark-2 max-2sm:hidden">
       <div className=" flex w-[200px]  flex-col  space-y-4 max-xl:w-[60px]">
@@ -15,7 +22,6 @@ const SideNavBar = () => {
           <div className="flex items-center space-x-4 ">
             <img width={40} src={SalesMasterIcon1} alt="sales master icon 1" />
             <img
-              
               src={SalesMasterIcon2}
               alt="sales master icon 2 max-2sm:hidden"
               className="mt-2 max-xl:hidden"

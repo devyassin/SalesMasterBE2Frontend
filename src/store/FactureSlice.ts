@@ -18,12 +18,7 @@ const initialState: any = {
   },
 
   name: "",
-  facture: {
-    nom: "",
-    email: "",
-    adresse: "",
-    telephone: "",
-  },
+  facture: {},
   statusGetAllFactures: "",
   statusAddFacture: "",
   statusRemoveFacture: "",

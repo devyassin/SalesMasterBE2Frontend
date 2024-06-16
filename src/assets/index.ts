@@ -17,6 +17,7 @@ import FactureHeaderIcon from "./FactureHeaderIcon.svg";
 import AddButton from "./AddButton.svg";
 import productimg from "./productimg.jpg";
 import venteLogo from "./VenteLogo.svg";
+import bgFacture from "./bgFacture.svg";
 
 export {
   hiddenEye,
@@ -38,4 +39,5 @@ export {
   productimg,
   venteLogo,
   FactureHeaderIcon,
+  bgFacture,
 };

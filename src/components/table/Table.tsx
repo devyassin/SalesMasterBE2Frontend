@@ -4,8 +4,9 @@ type Props = {
   data: Object[];
   statusGetAllData: string;
   feilds: string[];
-  onDelete: (id: string) => void;
-  onShowFormUpdate?: (id: string) => void;
+  onDelete: ((id: string) => void) | null;
+  onShowFormUpdate?: ((id: string) => void) | null;
+  onShowPrint?: ((id: string) => void) | null;
 };
 
 const Table = ({
@@ -14,6 +15,7 @@ const Table = ({
   feilds,
   onDelete,
   onShowFormUpdate,
+  onShowPrint,
 }: Props) => {
   return (
     <div className="relative  mt-14 overflow-x-auto h-[50vh]  scrollbar-hide   shadow-md sm:rounded-lg  ">
@@ -26,10 +28,9 @@ const Table = ({
 
               return (
                 <Row
-                  onShowFormUpdate={
-                    onShowFormUpdate ? onShowFormUpdate : () => {}
-                  }
-                  onDelete={onDelete}
+                  onShowFormUpdate={onShowFormUpdate ? onShowFormUpdate : null}
+                  onShowPrint={onShowPrint ? onShowPrint : null}
+                  onDelete={onDelete ? onDelete : null}
                   key={i}
                   cells={stringObjData}
                 />

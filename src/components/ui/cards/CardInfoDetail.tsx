@@ -6,13 +6,22 @@ type DataItem = {
 type Props = {
   title: string;
   data: DataItem[];
+  customClassStyleForTitle?: string;
 };
 
-const CardInfoDetail = ({ title, data }: Props) => {
+const CardInfoDetail = ({ title, data, customClassStyleForTitle }: Props) => {
   return (
     <div>
-      <h1 className="text-3xl font-tajwal pb-4 text-light-white-2">{title}</h1>
-      <div className="bg-[#2d3748] overflow-hidden shadow rounded-lg border border-gray-700">
+      <h1
+        className={`text-3xl font-tajwal pb-4  ${
+          customClassStyleForTitle
+            ? customClassStyleForTitle
+            : "text-light-white-2"
+        }`}
+      >
+        {title}
+      </h1>
+      <div className="bg-[#2d3748]  overflow-hidden shadow rounded-lg border border-gray-700">
         <div className="px-4 py-5 sm:p-0">
           <dl className="sm:divide-y sm:divide-gray-700">
             {data.map((item, index) => (

@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import SideNavBar from "../../components/nabBars/SideNavBar";
 import { useAppSelector } from "../../store/store";
 
@@ -6,6 +6,9 @@ const Feed = () => {
   const overlayVisibility: any = useAppSelector(
     (state) => state.modals.overlayVisibility
   );
+  const location = useLocation();
+  const currentPath = location.pathname;
+  const isFacturationPath = /facturation\/\d+/.test(currentPath);
   return (
     <div className="flex h-screen flex-col bg-[#111] text-white overflow-y-hidden ">
       {overlayVisibility && (
@@ -13,7 +16,7 @@ const Feed = () => {
       )}
       <div className="flex h-full w-full  ">
         <SideNavBar />
-        <div className="mx-10 my-12 w-full ">
+        <div className={`mx-10 ${isFacturationPath ? "my-4" : "my-12"}  w-full`}>
           <Outlet />
         </div>
       </div>

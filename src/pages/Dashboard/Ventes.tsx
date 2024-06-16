@@ -21,6 +21,7 @@ import TableFunctions from "../../components/table/TableFunctions";
 import VenteForm from "../../components/form/VenteForm";
 import Pagination from "../../components/table/Pagination";
 
+
 const Ventes = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<any>();

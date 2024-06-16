@@ -11,6 +11,7 @@ import {
   VenteDetails,
   Ventes,
 } from "./pages";
+import FacturationDetails from "./pages/NestedRoutes/FacturationDetails";
 import SignUp from "./pages/PublicRoutes/SignUp";
 import "./styles/globals.css";
 
@@ -43,7 +44,10 @@ function App() {
               <Route path=":id" element={<VenteDetails />} />
             </Route>
             <Route path="inventaire" element={<Inventaire />} />
-            <Route path="facturation" element={<Facturation />} />
+            <Route path="facturation">
+              <Route path="/facturation" element={<Facturation />} />
+              <Route path=":id" element={<FacturationDetails />} />
+            </Route>
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
