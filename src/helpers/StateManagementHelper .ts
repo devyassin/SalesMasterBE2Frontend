@@ -30,6 +30,9 @@ export class ApiService {
       }
     );
   }
+  public get() {
+    return this.instance.get(this.resource);
+  }
 }
 
 export class StateManagementHelper extends ApiService {

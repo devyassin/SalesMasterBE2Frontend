@@ -9,6 +9,7 @@ import VenteIcon from "./VenteIcon.svg";
 import InventaireIcon from "./InventaireIcon.svg";
 import FactureIcon from "./FactureIcon.svg";
 import LogoutIcon from "./LogoutIcon.svg";
+import UserIcon from "./UserIcon.svg";
 import SalesMasterIcon1 from "./SalesMasterIcon1.svg";
 import SalesMasterIcon2 from "./SalesMasterIcon2.svg";
 import ClientsHeaderIcon from "./Clients.svg";
@@ -28,6 +29,7 @@ export {
   DashboardIcon,
   ClientIcon,
   VenteIcon,
+  UserIcon,
   InventaireIcon,
   FactureIcon,
   LogoutIcon,

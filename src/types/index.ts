@@ -48,3 +48,11 @@ export interface User {
   email: string;
   motDePasse: string;
 }
+
+export interface CardDataStats {
+  totalClients: number;
+  totalVentes: number;
+  totalUsers: number;
+  totalProducts: number;
+  totalFactures: number;
+}

@@ -6,9 +6,11 @@ import ProductSlice from "./ProductSlice";
 import VenteSlice from "./VenteSlice";
 import FactureSlice from "./FactureSlice";
 import AuthSlice from "./AuthSlice";
+import DashboardSlice from "./Dashboard";
 
 const store = configureStore({
   reducer: {
+    dashboard: DashboardSlice,
     clients: ClientSlice,
     produits: ProductSlice,
     ventes: VenteSlice,
