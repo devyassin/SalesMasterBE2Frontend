@@ -12,12 +12,12 @@ const AskedSignIn = ({ type, text }: Props) => {
       {type ? "Vous n’avez pas un compte ?" : "Vous avez déjà un compte ?"}{" "}
       <span
         onClick={() => {
-          if (type == "signup") {
+          if (type == "signup" || type == "login") {
             // push sing up
             navigate("/s'authentifier");
           } else {
             // push sing in
-            navigate("/s’inscrire");
+            navigate("/login");
           }
         }}
         className="cursor-pointer text-dark-blue font-bold"

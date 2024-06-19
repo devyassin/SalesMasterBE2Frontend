@@ -36,7 +36,6 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route index element={<Dashborad />} />
             <Route path="dashboard" element={<Dashborad />} />
             <Route path="clients" element={<Clients />} />
             <Route path="ventes">
@@ -49,7 +48,7 @@ function App() {
               <Route path=":id" element={<FacturationDetails />} />
             </Route>
           </Route>
-          <Route path="/login" element={<Login />} />
+          <Route index path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
       </BrowserRouter>

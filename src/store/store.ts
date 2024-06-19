@@ -5,6 +5,7 @@ import ModalSlice from "./ModalSlice";
 import ProductSlice from "./ProductSlice";
 import VenteSlice from "./VenteSlice";
 import FactureSlice from "./FactureSlice";
+import AuthSlice from "./AuthSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     produits: ProductSlice,
     ventes: VenteSlice,
     factures: FactureSlice,
+    auth: AuthSlice,
     modals: ModalSlice,
   },
   middleware: (getDefaultMiddleware) =>

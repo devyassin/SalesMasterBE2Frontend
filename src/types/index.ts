@@ -43,3 +43,8 @@ export interface Facture {
   vente: Vente;
   pdf: string;
 }
+
+export interface User {
+  email: string;
+  motDePasse: string;
+}

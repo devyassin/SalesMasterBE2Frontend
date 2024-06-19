@@ -5,12 +5,12 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  let token = false;
-  if (token) {
-    return <Navigate to="/signup" />;
-  } else {
-    return children;
+  let token = localStorage.getItem("token");
+  if (!token) {
+    return <Navigate to="/login" />;
   }
+
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;

@@ -1,13 +1,24 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { hiddenEye, showenEye } from "../../assets";
 type Props = {
   customClasses?: string;
   name: string;
   placeholder?: string;
   value?: string;
+  onChangeHandler?: (
+    event: ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => void;
 };
 
-const InputPassword = ({ customClasses, placeholder, name, value }: Props) => {
+const InputPassword = ({
+  customClasses,
+  placeholder,
+  name,
+  value,
+  onChangeHandler,
+}: Props) => {
   const [show, setShow] = useState(false);
 
   return (
@@ -18,6 +29,7 @@ const InputPassword = ({ customClasses, placeholder, name, value }: Props) => {
         name={name}
         className={`input-form focus:bg-dark-6 outline-none font-tajwal h-[61px] w-[273px] px-[28px] pt-[25px] pb-[19px] text-white ${customClasses} `}
         placeholder={placeholder}
+        onChange={onChangeHandler}
       />
       {show ? (
         <img

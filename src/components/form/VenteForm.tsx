@@ -57,7 +57,7 @@ const VenteForm = () => {
       yaxe="-70%"
       formHeader={`${formType === "add" ? "Ajouter Vente" : "Modifier Vente"}`}
     >
-      <form onSubmit={formType === "add" ? "" : ""}>
+      <form onSubmit={formType === "add" ? () => {} : () => {}}>
         {isFirstPart ? (
           <div>
             <div className="grid grid-cols-2 gap-8">

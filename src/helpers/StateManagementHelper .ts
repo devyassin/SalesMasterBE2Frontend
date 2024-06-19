@@ -3,9 +3,10 @@ import axios, { AxiosInstance } from "axios";
 import { API_URL } from "../constants/endpoints";
 
 const baseURL = `${API_URL}`;
-export class StateManagementHelper {
-  private instance: AxiosInstance;
-  private resource: string;
+
+export class ApiService {
+  protected instance: AxiosInstance;
+  protected resource: string;
 
   constructor(resource: string) {
     this.resource = resource;
@@ -15,6 +16,25 @@ export class StateManagementHelper {
         "content-type": "application/json",
       },
     });
+
+    this.instance.interceptors.request.use(
+      (config: any) => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+      },
+      (error: any) => {
+        return Promise.reject(error);
+      }
+    );
+  }
+}
+
+export class StateManagementHelper extends ApiService {
+  constructor(resource: string) {
+    super(resource);
   }
 
   getAll = (pagination: boolean) =>
@@ -84,7 +104,7 @@ export class StateManagementHelper {
         }
       }
     );
-    updatePatch = () =>
+  updatePatch = () =>
     createAsyncThunk(
       `${this.resource}/update`,
       async ([id, data]: any, { rejectWithValue }) => {
