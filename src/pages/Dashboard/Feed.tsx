@@ -8,7 +8,8 @@ const Feed = () => {
   );
   const location = useLocation();
   const currentPath = location.pathname;
-  const isFacturationPath = /facturation\/\d+/.test(currentPath);
+  const isFacturationPath = /dashboard+/.test(currentPath);
+  // const isFacturationPath = /facturation\/\d+/.test(currentPath);
   return (
     <div className="flex h-screen flex-col bg-[#111] text-white overflow-y-hidden ">
       {overlayVisibility && (
@@ -16,7 +17,9 @@ const Feed = () => {
       )}
       <div className="flex h-full w-full  ">
         <SideNavBar />
-        <div className={`mx-10 ${isFacturationPath ? "my-4" : "my-12"}  w-full`}>
+        <div
+          className={`mx-10 ${isFacturationPath ? "my-4 mb-2" : "my-12"}  w-full`}
+        >
           <Outlet />
         </div>
       </div>

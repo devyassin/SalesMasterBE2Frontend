@@ -4,7 +4,7 @@ type Props = {
   data: Object[];
   statusGetAllData: string;
   feilds: string[];
-  onDelete: ((id: string) => void) | null;
+  onDelete?: ((id: string) => void) | null;
   onShowFormUpdate?: ((id: string) => void) | null;
   onShowPrint?: ((id: string) => void) | null;
 };

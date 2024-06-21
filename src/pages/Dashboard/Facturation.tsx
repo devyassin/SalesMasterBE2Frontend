@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import {
   GetAllFactures,
   GetOneFacture,
-  RemoveFacture,
   SearchFactureByName,
 } from "../../store/FactureSlice";
 import TableFunctions from "../../components/table/TableFunctions";

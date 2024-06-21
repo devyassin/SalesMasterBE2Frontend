@@ -30,8 +30,8 @@ export class ApiService {
       }
     );
   }
-  public get() {
-    return this.instance.get(this.resource);
+  public get(routeName: string) {
+    return this.instance.get(`${this.resource}/${routeName}`);
   }
 }
 

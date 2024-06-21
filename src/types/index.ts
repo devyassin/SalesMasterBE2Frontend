@@ -56,3 +56,8 @@ export interface CardDataStats {
   totalProducts: number;
   totalFactures: number;
 }
+
+export interface VenteCountDataStats {
+  venteNouvelleCount: number;
+  venteEncoursCount: number;
+  venteCompletedCount: number;}
