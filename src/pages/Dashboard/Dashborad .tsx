@@ -1,17 +1,27 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getDashboardCards, getVenteCountsStats } from "../../store/Dashboard";
-import { CardDataStats, VenteCountDataStats } from "../../types";
+import {
+  getDashboardCards,
+  getStatusCountStats,
+  getVenteCountsStats,
+} from "../../store/Dashboard";
+import {
+  CardDataStats,
+  StockStatusCountResponse,
+  VenteCountDataStats,
+} from "../../types";
 import { useAppSelector } from "../../store/store";
 import { CardsDashboardData } from "../../constants/CardsDashboard";
 import CardDataStatsDashboard from "../../components/ui/cards/CardDataStatsDashboard";
 import PieChartVenteStatus from "../../components/charts/PieChartVenteStatus ";
+import PieChartStockStatus from "../../components/charts/PieChartStockStatus";
 
 const Dashborad = () => {
   const dispatch = useDispatch<any>();
   useEffect(() => {
     dispatch(getDashboardCards());
     dispatch(getVenteCountsStats());
+    dispatch(getStatusCountStats());
   }, []);
 
   const cardsDataStats: CardDataStats = useAppSelector(
@@ -22,12 +32,20 @@ const Dashborad = () => {
     (state) => state.dashboard.ventesCountes
   );
 
+  const stockCountDataStats: StockStatusCountResponse = useAppSelector(
+    (state) => state.dashboard.stockCountes
+  );
+
   const statusGetAllCardsData = useAppSelector(
     (state) => state.dashboard.statusGetAllCardsData
   );
 
   const statusGetventesCountes = useAppSelector(
     (state) => state.dashboard.statusGetventesCountes
+  );
+
+  const statusGetStockCountes = useAppSelector(
+    (state) => state.dashboard.statusGetStockCountes
   );
 
   let {
@@ -57,9 +75,22 @@ const Dashborad = () => {
     venteEncoursCount,
     venteCompletedCount,
   ];
+
+  let {
+    stockFaibleCount = 0,
+    stockMoyenCount = 0,
+    stockOptimalCount = 0,
+  } = stockCountDataStats || {};
+
+  let totalStockCountStats = [
+    stockFaibleCount,
+    stockMoyenCount,
+    stockOptimalCount,
+  ];
   if (
     statusGetAllCardsData === "loading" ||
-    statusGetventesCountes === "loading"
+    statusGetventesCountes === "loading" ||
+    statusGetStockCountes === "loading"
   ) {
     return <div>Loading...</div>;
   }
@@ -81,8 +112,9 @@ const Dashborad = () => {
           );
         })}
       </div>
-      <div className="pt-6 grid grid-cols-2 ">
+      <div className="pt-6 grid grid-cols-2 gap-x-6 ">
         <PieChartVenteStatus data={totalVentesCountStats} />
+        <PieChartStockStatus data={totalStockCountStats} />
       </div>
     </div>
   );

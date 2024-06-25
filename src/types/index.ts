@@ -60,4 +60,11 @@ export interface CardDataStats {
 export interface VenteCountDataStats {
   venteNouvelleCount: number;
   venteEncoursCount: number;
-  venteCompletedCount: number;}
+  venteCompletedCount: number;
+}
+
+export interface StockStatusCountResponse {
+  stockFaibleCount: number;
+  stockMoyenCount: number;
+  stockOptimalCount: number;
+}

@@ -28,14 +28,29 @@ export const getVenteCountsStats = createAsyncThunk(
   }
 );
 
+export const getStatusCountStats = createAsyncThunk(
+  "dashboard/fetchedStockCountsStats",
+  async (_, thunkAPI) => {
+    try {
+      const response = await apiService.get("stock_count_stats");
+      return response.data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const initialState: any = {
   data: {},
   cards: {},
   ventesCountes: {},
+  stockCountes: {},
   statusGetAllCardsData: "",
   statusGetventesCountes: "",
+  statusGetStockCountes: "",
   errorAllCardsData: "",
   errorGetventesCountes: "",
+  errorGetStockCountes: "",
 };
 
 const dashboardSlice = createSlice({
@@ -65,6 +80,17 @@ const dashboardSlice = createSlice({
       .addCase(getVenteCountsStats.rejected, (state, { payload }: any) => {
         state.statusGetventesCountes = "failed";
         state.errorGetventesCountes = payload.response.data.message;
+      })
+      .addCase(getStatusCountStats.pending, (state) => {
+        state.statusGetStockCountes = "loading";
+      })
+      .addCase(getStatusCountStats.fulfilled, (state: any, { payload }) => {
+        state.statusGetStockCountes = "succeeded";
+        state.stockCountes = payload;
+      })
+      .addCase(getStatusCountStats.rejected, (state, { payload }: any) => {
+        state.statusGetStockCountes = "failed";
+        state.errorGetStockCountes = payload.response.data.message;
       });
   },
 });
