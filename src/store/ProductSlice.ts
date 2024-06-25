@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { StateManagementHelper } from "../helpers/StateManagementHelper ";
+import { Produit } from "../types";
 
 const apiService = new StateManagementHelper("produits");
 
@@ -127,11 +128,7 @@ const productSlice = createSlice({
       })
       .addCase(updateOneProduct.fulfilled, (state: any, { payload }) => {
         state.statusUpdateOneProducts = "succeeded";
-        const index = state.data.content.findIndex(
-          (produit: any) => produit.produitId === state.produit.produitId
-        );
-        state.data.content[index] = state.produit;
-        state.produit = payload;
+        
       })
       .addCase(updateOneProduct.rejected, (state, { payload }: any) => {
         state.statusUpdateOneProducts = "failed";

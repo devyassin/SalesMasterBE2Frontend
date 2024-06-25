@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { StateManagementHelper } from "../helpers/StateManagementHelper ";
-import { Vente } from "../types";
+import { Produit, ProduitQauntite, Vente } from "../types";
 
 const apiService = new StateManagementHelper("ventes");
 
@@ -20,10 +20,10 @@ const initialState: any = {
 
   vente: {
     client: {},
-    status: "",
+    statut: "",
     dateVente: "",
     total: "",
-    ProduitQauntiteDao: [],
+    produitQauntiteDaos: [],
   },
   statusGetAllVentes: "",
   statusAddVente: "",
@@ -46,13 +46,29 @@ const venteSlice = createSlice({
       { payload }: PayloadAction<{ name: any; value: any }>
     ) => {
       const { name, value } = payload;
-      if (name === "ProduitQauntiteDao") {
+      if (name === "produitQauntiteDaos") {
         console.log(value);
-        let products = value.map((val: any) => val.value);
+        let products = value.map((val: any) => {
+          return { produit: val.value, quantite: 0 };
+        });
 
-        state.vente.ProduitQauntiteDao = products;
+        state.vente.produitQauntiteDaos = products;
       } else {
         state.vente[name] = value;
+      }
+    },
+    handleQuantiteProduct: (
+      state: any,
+      { payload }: PayloadAction<{ id: number; name: string; value: any }>
+    ) => {
+      const { id, name, value } = payload;
+      const productIndex = state.vente.produitQauntiteDaos.findIndex(
+        (prod: ProduitQauntite) => prod.produit.produitId === id
+      );
+
+      if (productIndex !== -1) {
+        // Update the quantity of the found product
+        state.vente.produitQauntiteDaos[productIndex].quantite = Number(value);
       }
     },
     clearVente: (state) => {
@@ -88,7 +104,7 @@ const venteSlice = createSlice({
       .addCase(addVente.pending, (state) => {
         state.statusAddVente = "loading";
       })
-      .addCase(addVente.fulfilled, (state: any) => {
+      .addCase(addVente.fulfilled, (state: any, { payload }) => {
         state.statusAddVente = "succeeded";
       })
       .addCase(addVente.rejected, (state, { payload }: any) => {
@@ -146,5 +162,6 @@ export const {
   handleGigForm,
   clearStatusVente,
   clearVente,
+  handleQuantiteProduct,
 } = venteSlice.actions;
 export default venteSlice.reducer;

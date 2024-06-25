@@ -35,7 +35,6 @@ const useAddNewClient = () => {
   }, [statusAddClient]);
 
   const addNewClient = (e: FormEvent) => {
-    console.log("fff");
     e.preventDefault();
     if (zodHandllingErrors(ClientValidation, client)) {
       dispatch(addClient(client));

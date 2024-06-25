@@ -25,3 +25,14 @@ export const ProductValidation = z.object({
     .int(), // Ensures integer stock
   image: z.any(),
 });
+
+export const ProduitQauntiteValidation = z.object({
+  produit: ProductValidation, // Assuming ProductValidation is already defined
+  quantite: z.number().positive("Quantity must be a positive number"),
+});
+
+export const VenteValidation = z.object({
+  client: ClientValidation,
+  statut: z.enum(["NOUVELLE", "ENCOURS", "COMPLETEE"]),
+  produitQauntiteDaos: z.array(ProduitQauntiteValidation), // Array of ProduitQauntite validated by ProduitQauntiteValidation
+});
