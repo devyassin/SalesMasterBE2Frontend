@@ -33,6 +33,7 @@ export class ApiService {
   public get(routeName: string) {
     return this.instance.get(`${this.resource}/${routeName}`);
   }
+ 
 }
 
 export class StateManagementHelper extends ApiService {
@@ -94,6 +95,18 @@ export class StateManagementHelper extends ApiService {
       }
     );
 
+  getEmpty = () =>
+    createAsyncThunk(
+      `${this.resource}/getEmpty`,
+      async ({ rejectWithValue }: any) => {
+        try {
+          const response = await this.instance.get(`/${this.resource}`);
+          return response.data;
+        } catch (error: any) {
+          return rejectWithValue(error);
+        }
+      }
+    );
   update = () =>
     createAsyncThunk(
       `${this.resource}/update`,

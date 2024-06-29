@@ -15,6 +15,7 @@ import { CardsDashboardData } from "../../constants/CardsDashboard";
 import CardDataStatsDashboard from "../../components/ui/cards/CardDataStatsDashboard";
 import PieChartVenteStatus from "../../components/charts/PieChartVenteStatus ";
 import PieChartStockStatus from "../../components/charts/PieChartStockStatus";
+import { getCurrentUser } from "../../store/AuthSlice";
 
 const Dashborad = () => {
   const dispatch = useDispatch<any>();
@@ -22,6 +23,7 @@ const Dashborad = () => {
     dispatch(getDashboardCards());
     dispatch(getVenteCountsStats());
     dispatch(getStatusCountStats());
+    dispatch(getCurrentUser());
   }, []);
 
   const cardsDataStats: CardDataStats = useAppSelector(

@@ -1,6 +1,10 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API_URL } from "../constants/endpoints";
+import {
+  ApiService,
+  StateManagementHelper,
+} from "../helpers/StateManagementHelper ";
 
 const baseURL = `${API_URL}`;
 
@@ -16,15 +20,21 @@ export const Login = createAsyncThunk(
   }
 );
 
+const apiService = new StateManagementHelper("auth/profile");
+export const getCurrentUser = apiService.getEmpty();
+
 const initialState: any = {
   data: {},
+  currentUser: {},
   token: "",
   user: {
     email: "",
     password: "",
   },
   statusLogin: "",
+  statusGetCurrentUser: "",
   errorLogin: "",
+  errorGetCurrentUser: "",
 };
 
 const authSlice = createSlice({
@@ -64,6 +74,19 @@ const authSlice = createSlice({
       .addCase(Login.rejected, (state, { payload }: any) => {
         state.statusLogin = "failed";
         state.errorLogin = payload.response.data.message;
+      })
+      .addCase(getCurrentUser.pending, (state) => {
+        state.statusGetCurrentUser = "loading";
+      })
+      .addCase(getCurrentUser.fulfilled, (state: any, { payload }) => {
+        state.statusGetCurrentUser = "succeeded";
+        console.log(payload);
+        state.currentUser = payload;
+      })
+      .addCase(getCurrentUser.rejected, (state, { payload }: any) => {
+        state.statusGetCurrentUser = "failed";
+        console.log(payload)
+        // state.errorGetCurrentUser = payload.response.data.message;
       });
   },
 });

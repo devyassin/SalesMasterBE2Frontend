@@ -29,7 +29,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
           <span className="text-sm font-medium">{title}</span>
         </div>
 
-        <span
+        {/* <span
           className={`flex items-center gap-1 text-sm font-medium ${
             levelUp ? "text-[#10B981]" : "text-soft-read"
           } `}
@@ -65,7 +65,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
               />
             </svg>
           )}
-        </span>
+        </span> */}
       </div>
     </div>
   );
